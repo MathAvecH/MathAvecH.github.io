@@ -5,48 +5,139 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Ton Nom - Data Scientist</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
         body {
             font-family: 'Montserrat', Arial, sans-serif;
-            background: #fafbfc;
-            color: #222;
             margin: 0;
-            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(120deg,#6ec3f2 0%, #cb98fd 100%);
+            color: #232942;
+        }
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: rgba(255,255,255,0.90);
+            border-radius: 18px;
+            box-shadow: 0 4px 32px rgba(85,45,131,0.12);
+            padding: 3rem 2rem 2rem 2rem;
         }
         header {
-            background: #f3f4f6;
-            padding: 2rem;
             text-align: center;
+            margin-bottom: 2rem;
         }
         h1 {
+            font-size: 2.7em;
             margin: 0.2em 0;
+            letter-spacing: 2px;
+            font-weight: 700;
+            background: linear-gradient(90deg,#4279f2,#8e43e7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            font-size: 1.3em;
+            font-weight: 400;
+            color: #387bf6;
+            margin-bottom: 0.4em;
         }
         nav {
-            margin-bottom: 1em;
+            margin: 1em 0 2em 0;
         }
         nav a {
-            color: #21364d;
+            color: #8e43e7;
+            background: #e6eafa;
+            border-radius: 6px;
             text-decoration: none;
             margin: 0 1em;
             font-weight: bold;
+            padding: 0.5em 1em;
+            transition: background .2s;
+        }
+        nav a:hover {
+            background: #d1e6ff;
+            color: #4279f2;
+        }
+        .social a {
+            margin: 0 .7em;
+            font-size: 1.5em;
+            color: #8e43e7;
+            background: #edefee;
+            border-radius: 50%;
+            padding: 0.3em 0.4em;
+            transition: background .2s, color .2s;
+            display: inline-block;
+        }
+        .social a:hover {
+            background: #6ec3f2;
+            color: #fff;
         }
         section {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: white;
-            border-radius: 9px;
-            box-shadow: 0 2px 8px #eee;
-            padding: 2rem;
+            margin: 2.5em 0;
         }
-        .skills, .projects {
+        h2 {
+            font-size: 1.35em;
+            font-weight: 700;
+            background: linear-gradient(90deg,#6ec3f2,#cb98fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.2em;
+            letter-spacing: 1px;
+        }
+        .skills {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
         }
-        .skill, .project {
-            background: #f4f4f4;
+        .skill {
+            background: linear-gradient(90deg,#e0e9fa, #f3d9fc);
             border-radius: 6px;
-            padding: 0.5em 1em;
+            padding: .7em 1.3em;
+            font-weight: bold;
+            font-size: 1em;
+            box-shadow: 0 1px 4px #c6b6fa85;
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .skill i {
+            color: #8e43e7;
+        }
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+        .project {
+            background: #ffffffee;
+            border: 2px solid #6ec3f270;
+            border-radius: 9px;
+            padding: 1em 1.2em;
+            min-width: 220px;
+            box-shadow: 0 2px 8px #efeefe;
+            transition: border .2s;
+        }
+        .project:hover {
+            border-color: #8e43e7b5;
+        }
+        .project-title {
+            color: #8e43e7;
+            font-weight: bold;
+            margin-bottom: .4em;
+        }
+        .project a {
+            color: #387bf6;
+            text-decoration: underline;
+        }
+        .contact-box {
+            background: #6ec3f2;
+            color: #fff;
+            border-radius: 9px;
+            padding: 1.2em;
+            box-shadow: 0 1px 10px #a6c6e7b0;
+            margin-top: 1em;
+            font-size: 1.07em;
         }
         footer {
             text-align: center;
@@ -54,57 +145,73 @@
             padding: 2rem 1rem 0 1rem;
             font-size: 0.9em;
         }
-        .social a {
-            margin: 0 0.5em;
-            color: #1a1a1a;
+        /* Responsive */
+        @media (max-width:650px){
+            .container{padding: 1rem;}
+            .skills,.projects {flex-direction:column;}
         }
     </style>
 </head>
 <body>
+    <div class="container">
     <header>
         <nav>
-            <a href="#about">About me</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
+            <a href="#about">À propos</a>
+            <a href="#skills">Compétences</a>
+            <a href="#projects">Projets</a>
             <a href="#contact">Contact</a>
         </nav>
         <h1>Ton Nom</h1>
-        <p>Data Scientist</p>
+        <div class="subtitle">Data Scientist • Bordeaux</div>
         <div class="social">
-            <a href="https://github.com/ton_user" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/ton_user" target="_blank">LinkedIn</a>
+            <a title="GitHub" href="https://github.com/ton_user" target="_blank"><i class="fab fa-github"></i></a>
+            <a title="LinkedIn" href="https://linkedin.com/in/ton_user" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <!-- Ajoute plus de réseaux si tu veux -->
         </div>
     </header>
+
     <section id="about">
-        <h2>About me</h2>
-        <p>Bienvenue sur ma page! Je suis data scientist passionné de sport et d'analyse de données.</p>
+        <h2>À propos de moi</h2>
+        <p>
+            Bienvenue sur ma page ! Je suis passionné par la data science, le sport et le développement logiciel.<br>
+            Âgé de 29 ans, je vis à Bordeaux et j'aime créer des outils utiles pour l'analyse de données.
+        </p>
     </section>
     <section id="skills">
-        <h2>My Skillsets</h2>
+        <h2>Compétences</h2>
         <div class="skills">
-            <div class="skill">Python</div>
-            <div class="skill">Pandas</div>
-            <div class="skill">Scikit-learn</div>
-            <div class="skill">TensorFlow</div>
-            <div class="skill">SQL</div>
-            <div class="skill">Django</div>
-            <!-- Ajoute plus de skills ici -->
+            <div class="skill"><i class="fab fa-python"></i> Python</div>
+            <div class="skill"><i class="fas fa-database"></i> SQL</div>
+            <div class="skill"><i class="fas fa-brain"></i> TensorFlow</div>
+            <div class="skill"><i class="fab fa-github"></i> Git</div>
+            <div class="skill"><i class="fas fa-cogs"></i> Django</div>
+            <div class="skill"><i class="fas fa-chart-bar"></i> Pandas</div>
+            <div class="skill"><i class="fas fa-robot"></i> Scikit-learn</div>
+            <!-- Personnalise avec tes propres compétences -->
         </div>
     </section>
     <section id="projects">
-        <h2>Side Projects</h2>
+        <h2>Projets personnels</h2>
         <div class="projects">
             <div class="project">
-                <b>Tic Tac Toe Minimax</b><br>
-                <a href="#">Voir sur GitHub</a>
+                <div class="project-title">Tic Tac Toe Minimax</div>
+                <div><a href="#">Voir sur GitHub</a></div>
             </div>
-            <!-- Ajoute plus de projets ici -->
+            <div class="project">
+                <div class="project-title">Analyse Rugby Stats</div>
+                <div><a href="#">Voir sur GitHub</a></div>
+            </div>
+            <!-- Ajoute tes propres projets -->
         </div>
     </section>
     <section id="contact">
         <h2>Contact</h2>
-        <p>Tu peux me contacter par email: <b>ton@email.com</b></p>
+        <div class="contact-box">
+            📧 Email : <b>ton@email.com</b><br>
+            Tu peux aussi me contacter via <b>LinkedIn</b> ou <b>GitHub</b> !
+        </div>
     </section>
+    </div>
     <footer>
         &copy; 2025 Ton Nom - Data Scientist
     </footer>
