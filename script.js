@@ -750,7 +750,7 @@ function updateLanguage() {
 // ====================================
 const aiChatData = {
     fr: {
-        welcome: "Salut ! Je suis l'assistant virtuel de Mathieu. Que veux-tu savoir ?",
+        welcome: "Bonjour ! Je suis l'assistant virtuel de Mathieu. Posez-moi vos questions sur son parcours, ses compétences ou ses projets.",
         suggestions: [
             "Parle-moi des hobbies de Mathieu",
             "Quelles sont ses compétences principales ?",
@@ -758,10 +758,18 @@ const aiChatData = {
             "Pourquoi la data science ?"
         ],
         responses: {
-            "Parle-moi des hobbies de Mathieu": "Mathieu est un grand passionné de rugby, notamment supporter de l'ASM Clermont Auvergne. Cette passion pour le sport l'a naturellement orienté vers les sports analytics. Il aime aussi la randonnée et le vélo, profitant des Pyrénées proches de Toulouse pour se ressourcer. C'est également un mordu de tech et d'IA, passant son temps libre à expérimenter avec les derniers frameworks de machine learning et à suivre l'actualité des LLMs.",
-            "Quelles sont ses compétences principales ?": "Mathieu excelle en Python (Pandas, NumPy, Scikit-learn), maîtrise le deep learning avec TensorFlow et PyTorch, et a une expertise solide en NLP grâce à Hugging Face et les Transformers. Il est également compétent en data engineering avec SQL, Elastic Stack et la création de pipelines de données. Côté développement, il utilise Kotlin et Spring AI. Son domaine de prédilection reste la computer vision et les sports analytics.",
-            "Décris son parcours professionnel": "Mathieu a débuté chez FDTI Consulting où il a créé des dashboards KPI et fait de la modélisation prédictive. Il a ensuite rejoint MIPIH pour travailler sur l'IA appliquée à la santé avec du NLP avancé. À Toulouse Métropole, il a développé des solutions d'IA pour les services publics. Actuellement, il est Data Scientist à l'ASM Clermont Auvergne où il analyse la performance sportive, un rôle qui combine parfaitement sa passion pour le rugby et la data science. Il a également fait un stage chez Axione en tant qu'assistant administrateur de base de données.",
-            "Pourquoi la data science ?": "Pour Mathieu, la data science n'est pas qu'une question de code et d'algorithmes. C'est avant tout une discipline au service de l'humain. Il est motivé par l'impact concret de ses analyses : améliorer la performance d'une équipe, optimiser des services pour les citoyens, ou aider des professionnels de santé. Il croit fermement que la valeur de la data science réside dans sa capacité à créer des insights actionnables et accessibles pour l'utilisateur final."
+            "Parle-moi des hobbies de Mathieu": "Mathieu est un grand passionné de rugby, notamment supporter de l'ASM Clermont Auvergne. Cette passion pour le sport l'a naturellement orienté vers les sports analytics. Il aime aussi la randonnée et le vélo, profitant des Pyrénées proches de Toulouse pour se ressourcer. C'est aussi un passionné de tech et d'IA, passant son temps libre à expérimenter les derniers frameworks de machine learning et suivre l'actualité des LLMs.",
+            "Quelles sont ses compétences principales ?": "Mathieu excelle en Python (Pandas, NumPy, Scikit-learn), maîtrise le deep learning avec TensorFlow et PyTorch, et possède une expertise solide en NLP grâce à Hugging Face et Transformers. Il est également compétent en data engineering avec SQL, Elastic Stack et la création de pipelines de données. Côté développement, il utilise Kotlin et Spring AI. Son domaine de prédilection reste la computer vision et les sports analytics.",
+            "Décris son parcours professionnel": "Mathieu a débuté chez Axione en tant qu'Assistant Administrateur de Base de Données, sa première expérience professionnelle. Il a ensuite rejoint FDTI Consulting où il a créé des dashboards KPI et fait de la modélisation prédictive. Il a poursuivi chez MIPIH pour travailler sur l'IA appliquée à la santé avec du NLP avancé. À Toulouse Métropole, il a développé des solutions d'IA pour les services publics. Actuellement, il est Data Scientist à l'ASM Clermont Auvergne où il analyse la performance sportive, un rôle qui combine parfaitement sa passion pour le rugby et la data science.",
+            "Pourquoi la data science ?": "Pour Mathieu, la data science n'est pas qu'une question de code et d'algorithmes. C'est avant tout une discipline au service de l'humain. Il est motivé par l'impact concret de ses analyses : améliorer la performance d'une équipe, optimiser des services pour les citoyens, ou aider des professionnels de santé. Il croit fermement que la valeur de la data science réside dans sa capacité à créer des insights actionnables et accessibles pour l'utilisateur final.",
+            "qui est mathieu": "Mathieu Vassal est un Data Scientist et spécialiste en Intelligence Artificielle basé à Toulouse. Passionné par l'application concrète de l'IA dans le sport, la computer vision et l'analyse de données, il transforme les données en insights qui font la différence.",
+            "formations": "Mathieu a suivi une formation solide en data science et intelligence artificielle. Son parcours académique lui a permis de développer une expertise technique complète, du machine learning au deep learning, en passant par le NLP et la computer vision.",
+            "projets": "Mathieu a travaillé sur plusieurs projets passionnants : un système RAG avec des LLMs, des analyses statistiques avancées de rugby, et des applications de computer vision pour la détection d'objets en temps réel. Chaque projet reflète sa passion pour l'IA et son application pratique.",
+            "contact": "Vous pouvez contacter Mathieu via LinkedIn (mathieu-vassal), GitHub (MathAvecH), ou par email. Il est basé à Toulouse et est toujours ouvert à de nouvelles opportunités passionnantes dans le domaine de la data science et de l'IA.",
+            "hobbies": "Mathieu est un grand passionné de rugby, notamment supporter de l'ASM Clermont Auvergne. Cette passion pour le sport l'a naturellement orienté vers les sports analytics. Il aime aussi la randonnée et le vélo, profitant des Pyrénées proches de Toulouse pour se ressourcer.",
+            "compétences": "Mathieu excelle en Python (Pandas, NumPy, Scikit-learn), maîtrise le deep learning avec TensorFlow et PyTorch, et possède une expertise solide en NLP grâce à Hugging Face et Transformers. Il est également compétent en data engineering avec SQL, Elastic Stack et la création de pipelines de données.",
+            "parcours": "Mathieu a débuté chez Axione en tant qu'Assistant Administrateur de Base de Données, sa première expérience professionnelle. Il a ensuite rejoint FDTI Consulting, puis MIPIH et Toulouse Métropole. Actuellement, il est Data Scientist à l'ASM Clermont Auvergne.",
+            "rugby": "Le rugby est une passion centrale pour Mathieu. Fan inconditionnel de l'ASM Clermont Auvergne, il a naturellement orienté sa carrière vers les sports analytics. Son poste actuel à l'ASM lui permet de combiner sa passion pour le sport et son expertise en data science."
         }
     },
     en: {
@@ -816,6 +824,8 @@ const aiChatBox = document.getElementById('aiChatBox');
 const aiChatClose = document.getElementById('aiChatClose');
 const aiChatMessages = document.getElementById('aiChatMessages');
 const aiChatSuggestions = document.getElementById('aiChatSuggestions');
+const aiChatInput = document.getElementById('aiChatInput');
+const aiChatSend = document.getElementById('aiChatSend');
 
 if (aiChatTrigger) {
     aiChatTrigger.addEventListener('click', () => {
@@ -824,6 +834,9 @@ if (aiChatTrigger) {
             addAIMessage(aiChatData[currentLang].welcome);
             updateSuggestions();
         }
+        if (aiChatBox.classList.contains('open') && aiChatInput) {
+            setTimeout(() => aiChatInput.focus(), 300);
+        }
     });
 }
 
@@ -831,6 +844,108 @@ if (aiChatClose) {
     aiChatClose.addEventListener('click', () => {
         aiChatBox.classList.remove('open');
     });
+}
+
+if (aiChatSend) {
+    aiChatSend.addEventListener('click', () => {
+        handleUserInput();
+    });
+}
+
+if (aiChatInput) {
+    aiChatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleUserInput();
+        }
+    });
+}
+
+function handleUserInput() {
+    const input = aiChatInput.value.trim();
+    if (!input) return;
+    
+    addUserMessage(input);
+    aiChatInput.value = '';
+    
+    // Hide suggestions after first question
+    if (aiChatSuggestions && aiChatSuggestions.style.display !== 'none') {
+        aiChatSuggestions.style.display = 'none';
+    }
+    
+    // Find best matching response
+    const response = findBestResponse(input);
+    if (response) {
+        addAIMessage(response, true);
+    } else {
+        const defaultResponse = currentLang === 'fr' 
+            ? "Je n'ai pas de réponse spécifique à cette question, mais je peux vous parler du parcours de Mathieu, de ses compétences, de ses hobbies ou de sa passion pour la data science. N'hésitez pas à me poser une autre question !"
+            : currentLang === 'en'
+            ? "I don't have a specific answer to that question, but I can tell you about Mathieu's career, his skills, his hobbies, or his passion for data science. Feel free to ask me another question!"
+            : currentLang === 'es'
+            ? "No tengo una respuesta específica a esa pregunta, pero puedo hablarle sobre la carrera de Mathieu, sus habilidades, sus hobbies o su pasión por la data science. ¡No dude en hacerme otra pregunta!"
+            : "Non ho una risposta specifica a questa domanda, ma posso parlarti della carriera di Mathieu, delle sue competenze, dei suoi hobby o della sua passione per la data science. Non esitare a farmi un'altra domanda!";
+        addAIMessage(defaultResponse, true);
+    }
+}
+
+function findBestResponse(input) {
+    const data = aiChatData[currentLang];
+    const inputLower = input.toLowerCase();
+    
+    // Try exact match first
+    for (const [question, response] of Object.entries(data.responses)) {
+        if (question.toLowerCase() === inputLower) {
+            return response;
+        }
+    }
+    
+    // Try partial match with keywords
+    const keywords = {
+        fr: {
+            hobbies: ['hobby', 'hobbies', 'loisir', 'passion', 'rugby', 'sport'],
+            skills: ['compétence', 'skill', 'technologie', 'python', 'ai', 'ia'],
+            career: ['parcours', 'expérience', 'carrière', 'travail', 'job', 'poste'],
+            why: ['pourquoi', 'motivation', 'raison'],
+            contact: ['contact', 'email', 'linkedin', 'joindre'],
+            projects: ['projet', 'réalisation', 'travaux'],
+            formation: ['formation', 'étude', 'diplôme', 'école']
+        },
+        en: {
+            hobbies: ['hobby', 'hobbies', 'leisure', 'passion', 'rugby', 'sport'],
+            skills: ['skill', 'competence', 'technology', 'python', 'ai'],
+            career: ['career', 'experience', 'work', 'job', 'position'],
+            why: ['why', 'motivation', 'reason'],
+            contact: ['contact', 'email', 'linkedin', 'reach'],
+            projects: ['project', 'work', 'achievement'],
+            formation: ['education', 'study', 'degree', 'school']
+        }
+    };
+    
+    const langKeywords = keywords[currentLang] || keywords.fr;
+    
+    for (const [category, terms] of Object.entries(langKeywords)) {
+        for (const term of terms) {
+            if (inputLower.includes(term)) {
+                // Map category to response key
+                const responseKeys = {
+                    hobbies: currentLang === 'fr' ? 'hobbies' : 'Tell me about Mathieu\'s hobbies',
+                    skills: currentLang === 'fr' ? 'compétences' : 'What are his main skills?',
+                    career: currentLang === 'fr' ? 'parcours' : 'Describe his career path',
+                    why: currentLang === 'fr' ? 'Pourquoi la data science ?' : 'Why data science?',
+                    contact: currentLang === 'fr' ? 'contact' : 'contact',
+                    projects: currentLang === 'fr' ? 'projets' : 'projects',
+                    formation: currentLang === 'fr' ? 'formations' : 'formations'
+                };
+                
+                const key = responseKeys[category];
+                if (data.responses[key]) {
+                    return data.responses[key];
+                }
+            }
+        }
+    }
+    
+    return null;
 }
 
 function addUserMessage(text) {
@@ -860,7 +975,7 @@ function addAIMessage(text, stream = false) {
         setTimeout(() => {
             typingDiv.remove();
             streamText(contentDiv, text);
-        }, 1000);
+        }, 800 + Math.random() * 400);
     } else {
         contentDiv.textContent = text;
         aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
@@ -871,7 +986,12 @@ function streamText(element, text, index = 0) {
     if (index < text.length) {
         element.textContent += text[index];
         aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
-        setTimeout(() => streamText(element, text, index + 1), 20);
+        // Variable speed for more realistic streaming
+        const delay = text[index] === '.' || text[index] === '!' || text[index] === '?' ? 150 : 
+                     text[index] === ',' || text[index] === ';' ? 100 : 
+                     text[index] === ' ' ? 30 : 
+                     15 + Math.random() * 15;
+        setTimeout(() => streamText(element, text, index + 1), delay);
     }
 }
 
