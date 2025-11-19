@@ -769,7 +769,7 @@ const aiChatData = {
             "hobbies": "Mathieu est un grand passionné de rugby, notamment supporter de l'ASM Clermont Auvergne. Cette passion pour le sport l'a naturellement orienté vers les sports analytics. Il aime aussi la randonnée et le vélo, profitant des Pyrénées proches de Toulouse pour se ressourcer.",
             "compétences": "Mathieu excelle en Python (Pandas, NumPy, Scikit-learn), maîtrise le deep learning avec TensorFlow et PyTorch, et possède une expertise solide en NLP grâce à Hugging Face et Transformers. Il est également compétent en data engineering avec SQL, Elastic Stack et la création de pipelines de données.",
             "parcours": "Mathieu a débuté chez Axione en tant qu'Assistant Administrateur de Base de Données, sa première expérience professionnelle. Il a ensuite rejoint FDTI Consulting, puis MIPIH et Toulouse Métropole. Actuellement, il est Data Scientist à l'ASM Clermont Auvergne.",
-            "rugby": "Le rugby est une passion centrale pour Mathieu. Fan inconditionnel de l'ASM Clermont Auvergne, il a naturellement orienté sa carrière vers les sports analytics. Son poste actuel à l'ASM lui permet de combiner sa passion pour le sport et son expertise en data science."
+            "rugby": "Le rugby est une passion centrale pour Mathieu. Fan inconditionnel du Stade Toulousain, il a naturellement orienté sa carrière vers les sports analytics. Son poste actuel à l'ASM lui permet de combiner sa passion pour le sport et son expertise en data science."
         }
     },
     en: {
