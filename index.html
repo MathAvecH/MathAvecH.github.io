@@ -27,13 +27,29 @@
     <nav>
         <div class="logo">MV</div>
         <ul class="nav-links">
-            <li><a href="#home">Accueil</a></li>
-            <li><a href="#experience">Expérience</a></li>
-            <li><a href="#skills">Compétences</a></li>
-            <li><a href="#projects">Projets</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" data-i18n="home">Accueil</a></li>
+            <li><a href="#experience" data-i18n="experience">Expérience</a></li>
+            <li><a href="#skills" data-i18n="skills">Compétences</a></li>
+            <li><a href="#projects" data-i18n="projects">Projets</a></li>
+            <li><a href="#contact" data-i18n="contact">Contact</a></li>
         </ul>
     </nav>
+
+
+    <!-- Theme Toggle & Language Selector -->
+    <div class="controls-wrapper">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+            <i class="fas fa-sun"></i>
+        </button>
+        <div class="language-selector" title="Change language">
+            <select id="langSelector">
+                <option value="fr">🇫🇷 FR</option>
+                <option value="en">🇬🇧 EN</option>
+                <option value="es">🇪🇸 ES</option>
+                <option value="it">🇮🇹 IT</option>
+            </select>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -164,6 +180,24 @@
                 </div>
 
                 <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Avr 2022 - Juin 2022</div>
+                    <h3 class="timeline-title">Assistant Administrateur Base de Données</h3>
+                    <div class="timeline-company"><i class="fas fa-database"></i> Axione</div>
+                    <p class="timeline-description">
+                        Gestion des données de l'entreprise, réalisation des traitements et des reportings demandés. 
+                        Mise en place de processus automatisés pour l'administration des bases de données.
+                    </p>
+                    <div class="timeline-tags">
+                        <span class="tag">Talend</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Méthodes agiles</span>
+                        <span class="tag">ETL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-date">Sept 2022 - Sept 2023</div>
                         <h3 class="timeline-title">Data Scientist</h3>
@@ -432,6 +466,22 @@
             </div>
         </div>
     </section>
+
+
+    <!-- AI Chat Assistant -->
+    <div class="ai-chat-container">
+        <button class="ai-chat-trigger" id="aiChatTrigger" title="Ask me anything">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="ai-chat-box" id="aiChatBox">
+            <div class="ai-chat-header">
+                <h3><i class="fas fa-brain"></i> AI Assistant</h3>
+                <button class="ai-chat-close" id="aiChatClose">&times;</button>
+            </div>
+            <div class="ai-chat-messages" id="aiChatMessages"></div>
+            <div class="ai-chat-suggestions" id="aiChatSuggestions"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
