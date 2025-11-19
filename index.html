@@ -27,11 +27,11 @@
     <nav>
         <div class="logo">MV</div>
         <ul class="nav-links">
-            <li><a href="#home" data-i18n="home">Accueil</a></li>
-            <li><a href="#experience" data-i18n="experience">Expérience</a></li>
-            <li><a href="#skills" data-i18n="skills">Compétences</a></li>
-            <li><a href="#projects" data-i18n="projects">Projets</a></li>
-            <li><a href="#contact" data-i18n="contact">Contact</a></li>
+            <li><a href="#home" data-i18n="nav.home">Accueil</a></li>
+            <li><a href="#experience" data-i18n="nav.experience">Expérience</a></li>
+            <li><a href="#skills" data-i18n="nav.skills">Compétences</a></li>
+            <li><a href="#projects" data-i18n="nav.projects">Projets</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -59,14 +59,10 @@
                 <div class="typing-wrapper">
                     <div class="tagline" id="typingText"></div>
                 </div>
-                <p>
-                    Passionné par l'IA et son application concrète dans le sport, 
-                    la computer vision et l'analyse de données. Je transforme les données en insights 
-                    qui font la différence.
-                </p>
+                <p data-i18n="hero.description">Passionné par l\'IA et son application concrète dans le sport, la computer vision et l\'analyse de données. Je transforme les données en insights qui font la différence.</p>
                 <div class="cta-buttons">
                     <a href="#contact" class="btn btn-primary">
-                        <span><i class="fas fa-envelope"></i> Me contacter</span>
+                        <span><i class="fas fa-envelope"></i> <span data-i18n="hero.contactMe">Me contacter</span></span>
                     </a>
                     <a href="https://www.linkedin.com/in/mathieu-vassal/" target="_blank" class="btn btn-secondary">
                         <span><i class="fab fa-linkedin"></i> LinkedIn</span>
@@ -99,26 +95,26 @@
     <section id="experience">
         <div class="section-header scroll-reveal">
             <div class="section-number">// 01</div>
-            <h2>Expérience</h2>
-            <p>Mon parcours en Data Science & Intelligence Artificielle</p>
+            <h2 data-i18n="experience.title">Expérience</h2>
+            <p data-i18n="experience.subtitle">Mon parcours en Data Science & Intelligence Artificielle</p>
         </div>
 
         <div class="timeline-stats scroll-reveal">
             <div class="stat-card">
                 <div class="stat-number">4+</div>
-                <div class="stat-label">Années d'expérience</div>
+                <div class="stat-label" data-i18n="experience.stats.years">Années d'expérience</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">5</div>
-                <div class="stat-label">Entreprises</div>
+                <div class="stat-label" data-i18n="experience.stats.companies">Entreprises</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">20+</div>
-                <div class="stat-label">Projets réalisés</div>
+                <div class="stat-label" data-i18n="experience.stats.projects">Projets réalisés</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">15+</div>
-                <div class="stat-label">Technologies</div>
+                <div class="stat-label" data-i18n="experience.stats.technologies">Technologies</div>
             </div>
         </div>
 
@@ -130,8 +126,7 @@
                         <h3 class="timeline-title">Data Scientist</h3>
                         <div class="timeline-company"><i class="fas fa-trophy"></i> ASM Clermont Auvergne</div>
                         <p class="timeline-description">
-                            Analyse de la performance sportive avec des techniques avancées de data science et machine learning. 
-                            Développement d'outils d'aide à la décision pour le staff technique.
+                            <span data-i18n="jobs.asm.description">Analyse de la performance sportive avec des techniques avancées de data science et machine learning. Développement d'outils d'aide à la décision pour le staff technique.</span>
                         </p>
                         <div class="timeline-tags">
                             <span class="tag">Dataiku</span>
@@ -148,8 +143,7 @@
                         <h3 class="timeline-title">AI Data Scientist</h3>
                         <div class="timeline-company"><i class="fas fa-city"></i> Toulouse Métropole</div>
                         <p class="timeline-description">
-                            Développement de solutions d'IA pour optimiser les services publics. Mise en place de chatbots 
-                            intelligents et systèmes de recommandation pour améliorer l'expérience citoyenne.
+                            <span data-i18n="jobs.toulouse.description">Développement de solutions d'IA pour optimiser les services publics. Mise en place de chatbots intelligents et systèmes de recommandation pour améliorer l'expérience citoyenne.</span>
                         </p>
                         <div class="timeline-tags">
                             <span class="tag">Python</span>
@@ -221,8 +215,8 @@
     <section id="skills">
         <div class="section-header scroll-reveal">
             <div class="section-number">// 02</div>
-            <h2>Compétences</h2>
-            <p>Technologies et outils que je maîtrise</p>
+            <h2 data-i18n="skills.title">Compétences</h2>
+            <p data-i18n="skills.subtitle">Technologies et outils que je maîtrise</p>
         </div>
         <div class="skills-grid">
             <div class="skill-card scroll-reveal">
@@ -345,8 +339,8 @@
     <section id="projects">
         <div class="section-header scroll-reveal">
             <div class="section-number">// 03</div>
-            <h2>Projets</h2>
-            <p>Quelques réalisations qui me tiennent à cœur</p>
+            <h2 data-i18n="projects.title">Projets</h2>
+            <p data-i18n="projects.subtitle">Quelques réalisations qui me tiennent à cœur</p>
         </div>
         <div class="projects-carousel">
             <div class="carousel-container">
@@ -357,7 +351,7 @@
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">RAG System</h3>
-                            <p class="project-description">
+                            <p class="project-description" data-i18n="projects.rag.description">
                                 Système de Retrieval-Augmented Generation utilisant des LLMs pour améliorer 
                                 la pertinence des réponses en s'appuyant sur une base de connaissances.
                             </p>
@@ -369,7 +363,7 @@
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/MathAvecH" target="_blank" class="project-link">
-                                    <i class="fab fa-github"></i> Code source
+                                    <i class="fab fa-github"></i> <span data-i18n="projects.sourceCode">Code source</span>
                                 </a>
                             </div>
                         </div>
@@ -381,7 +375,7 @@
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">Rugby Stats Analysis</h3>
-                            <p class="project-description">
+                            <p class="project-description" data-i18n="projects.rugby.description">
                                 Analyse approfondie des statistiques de rugby avec ML pour 
                                 identifier les patterns de performance et prédire les résultats des matchs.
                             </p>
@@ -393,7 +387,7 @@
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/MathAvecH" target="_blank" class="project-link">
-                                    <i class="fab fa-github"></i> Code source
+                                    <i class="fab fa-github"></i> <span data-i18n="projects.sourceCode">Code source</span>
                                 </a>
                             </div>
                         </div>
@@ -405,7 +399,7 @@
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">Computer Vision</h3>
-                            <p class="project-description">
+                            <p class="project-description" data-i18n="projects.cv.description">
                                 Application de deep learning pour la détection et classification d'objets 
                                 en temps réel, avec applications dans le domaine sportif.
                             </p>
@@ -417,7 +411,7 @@
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/MathAvecH" target="_blank" class="project-link">
-                                    <i class="fab fa-github"></i> Code source
+                                    <i class="fab fa-github"></i> <span data-i18n="projects.sourceCode">Code source</span>
                                 </a>
                             </div>
                         </div>
@@ -436,8 +430,8 @@
     <section id="contact">
         <div class="section-header scroll-reveal">
             <div class="section-number">// 04</div>
-            <h2>Contact</h2>
-            <p>Envie de collaborer ? Discutons !</p>
+            <h2 data-i18n="contact.title">Contact</h2>
+            <p data-i18n="contact.subtitle">Envie de collaborer ? Discutons !</p>
         </div>
         <div class="contact-grid">
             <div class="contact-card scroll-reveal">
@@ -460,7 +454,7 @@
 
             <div class="contact-card scroll-reveal">
                 <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <h3>Localisation</h3>
+                <h3 data-i18n="contact.location">Localisation</h3>
                 <p>Toulouse, France</p>
             </div>
         </div>
@@ -475,8 +469,8 @@
         <div class="ai-chat-box" id="aiChatBox">
             <div class="ai-chat-header">
                 <div>
-                    <h3><i class="fas fa-brain"></i> Assistant IA</h3>
-                    <p class="ai-chat-subtitle">Posez-moi vos questions sur Mathieu</p>
+                    <h3><i class="fas fa-brain"></i> <span data-i18n="ai.title">Assistant IA</span></h3>
+                    <p class="ai-chat-subtitle" data-i18n="ai.subtitle">Posez-moi vos questions sur Mathieu</p>
                 </div>
                 <button class="ai-chat-close" id="aiChatClose">&times;</button>
             </div>
@@ -487,7 +481,7 @@
                     type="text" 
                     class="ai-chat-input" 
                     id="aiChatInput" 
-                    placeholder="Tapez votre question..."
+                    placeholder="Tapez votre question..." data-i18n-placeholder="ai.placeholder"
                     autocomplete="off"
                 />
                 <button class="ai-chat-send" id="aiChatSend">
@@ -501,11 +495,11 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#home" class="footer-link">Accueil</a>
-                <a href="#experience" class="footer-link">Expérience</a>
-                <a href="#skills" class="footer-link">Compétences</a>
-                <a href="#projects" class="footer-link">Projets</a>
-                <a href="#contact" class="footer-link">Contact</a>
+                <a href="#home" class="footer-link" data-i18n="nav.home">Accueil</a>
+                <a href="#experience" class="footer-link" data-i18n="nav.experience">Expérience</a>
+                <a href="#skills" class="footer-link" data-i18n="nav.skills">Compétences</a>
+                <a href="#projects" class="footer-link" data-i18n="nav.projects">Projets</a>
+                <a href="#contact" class="footer-link" data-i18n="nav.contact">Contact</a>
             </div>
             <p>&copy; 2025 Mathieu Vassal • Data Scientist & AI Specialist</p>
             <p style="margin-top: 0.5rem; font-size: 0.875rem; opacity: 0.7;">Made with ❤️ and ☕ using HTML, CSS, JS</p>

@@ -8,6 +8,50 @@ window.addEventListener('load', () => {
 });
 
 // ====================================
+// MOBILE MENU HAMBURGER
+// ====================================
+// Créer le bouton hamburger s'il n'existe pas
+document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.querySelector('nav');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (nav && navLinks && window.innerWidth <= 1024) {
+        // Vérifier si le toggle n'existe pas déjà
+        if (!document.querySelector('.mobile-menu-toggle')) {
+            const toggle = document.createElement('div');
+            toggle.className = 'mobile-menu-toggle';
+            toggle.innerHTML = '<span></span><span></span><span></span>';
+            
+            // Insérer le toggle avant les links
+            nav.insertBefore(toggle, navLinks);
+            
+            // Toggle menu
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Fermer au clic sur un lien
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Fermer au clic en dehors
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+                    toggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+    }
+});
+
+// ====================================
 // CUSTOM CURSOR
 // ====================================
 const cursor = document.querySelector('.cursor');
@@ -593,127 +637,197 @@ if (themeToggle) {
 // MULTI-LANGUAGE SUPPORT
 // ====================================
 const translations = {
-    fr: {
-        home: 'Accueil',
-        about: 'À propos',
-        experience: 'Expérience',
-        skills: 'Compétences',
-        projects: 'Projets',
-        contact: 'Contact',
-        heroTagline1: 'Data Scientist',
-        heroTagline2: 'AI Specialist',
-        heroTagline3: 'ML Engineer',
-        heroTagline4: 'Sports Analytics',
-        heroDescription: "Passionné par l'IA et son application concrète dans le sport, la computer vision et l'analyse de données. Je transforme les données en insights qui font la différence.",
-        contactMe: 'Me contacter',
-        experienceTitle: 'Expérience',
-        experienceSubtitle: 'Mon parcours en Data Science & Intelligence Artificielle',
-        yearsExp: 'Années d\'expérience',
-        companies: 'Entreprises',
-        projectsDone: 'Projets réalisés',
-        technologies: 'Technologies',
-        skillsTitle: 'Compétences',
-        skillsSubtitle: 'Technologies et outils que je maîtrise',
-        projectsTitle: 'Projets',
-        projectsSubtitle: 'Quelques réalisations qui me tiennent à cœur',
-        contactTitle: 'Contact',
-        contactSubtitle: 'Envie de collaborer ? Discutons !',
-        location: 'Localisation',
-        madeWith: 'Fait avec passion à Toulouse',
-        aiChatTitle: 'Ask me anything',
-        aiChatPlaceholder: 'Posez-moi une question...'
+    "fr": {
+        "nav.home": "Accueil",
+        "nav.experience": "Expérience",
+        "nav.skills": "Compétences",
+        "nav.projects": "Projets",
+        "nav.contact": "Contact",
+        "hero.description": "Passionné par l'IA et son application concrète dans le sport, la computer vision et l'analyse de données. Je transforme les données en insights qui font la différence.",
+        "hero.contactMe": "Me contacter",
+        "experience.title": "Expérience",
+        "experience.subtitle": "Mon parcours en Data Science & Intelligence Artificielle",
+        "experience.stats.years": "Années d'expérience",
+        "experience.stats.companies": "Entreprises",
+        "experience.stats.projects": "Projets réalisés",
+        "experience.stats.technologies": "Technologies",
+        "jobs.asm.date": "Sept 2025 - Aujourd'hui",
+        "jobs.asm.description": "Analyse de la performance sportive avec des techniques avancées de data science et machine learning. Développement d'outils d'aide à la décision pour le staff technique.",
+        "jobs.toulouse.date": "Sept 2024 - Sept 2025",
+        "jobs.toulouse.description": "Développement de solutions d'IA pour optimiser les services publics. Mise en place de chatbots intelligents et systèmes de recommandation pour améliorer l'expérience citoyenne.",
+        "jobs.mipih.date": "Sept 2023 - Sept 2024",
+        "jobs.mipih.description": "Création de solutions d'IA pour améliorer les processus de santé publique. Développement de systèmes NLP avancés et création de tableaux de bord d'analyse pour la direction.",
+        "jobs.fdti.date": "Sept 2021 - Sept 2023",
+        "jobs.fdti.description": "Création de tableaux de bord KPI et de prédictions ML. Automatisation de processus de nettoyage de données et implémentation de pipelines ETL.",
+        "jobs.axione.date": "Juin 2021 - Août 2021",
+        "jobs.axione.description": "Support aux équipes IT dans l'administration de bases de données. Migration de données et optimisation des requêtes SQL.",
+        "skills.title": "Compétences",
+        "skills.subtitle": "Technologies et outils que je maîtrise",
+        "projects.title": "Projets",
+        "projects.subtitle": "Quelques réalisations qui me tiennent à cœur",
+        "projects.sourceCode": "Code source",
+        "projects.rag.description": "Système de Retrieval-Augmented Generation utilisant des LLMs pour améliorer la pertinence des réponses en s'appuyant sur une base de connaissances.",
+        "projects.rugby.description": "Analyse approfondie des statistiques de rugby avec ML pour identifier les patterns de performance et prédire les résultats des matchs.",
+        "projects.cv.description": "Application de deep learning pour la détection et classification d'objets en temps réel, avec applications dans le domaine sportif.",
+        "projects.rag.title": "RAG System",
+        "projects.rag.description": "Système de Retrieval-Augmented Generation utilisant des LLMs pour améliorer la pertinence des réponses en s'appuyant sur une base de connaissances.",
+        "projects.rugby.title": "Rugby Stats Analysis",
+        "projects.rugby.description": "Analyse approfondie des statistiques de rugby avec ML pour identifier les patterns de performance et prédire les résultats des matchs.",
+        "projects.cv.title": "Computer Vision",
+        "projects.cv.description": "Application de deep learning pour la détection et classification d'objets en temps réel, avec applications dans le domaine sportif.",
+        "contact.title": "Contact",
+        "contact.subtitle": "Envie de collaborer ? Discutons !",
+        "contact.location": "Localisation",
+        "ai.title": "Assistant IA",
+        "ai.subtitle": "Posez-moi vos questions sur Mathieu",
+        "ai.placeholder": "Tapez votre question...",
+        "ai.chatTitle": "Discutez avec mon assistant IA",
+        "footer.madeWith": "Made with ❤️ and ☕ using HTML, CSS, JS"
     },
-    en: {
-        home: 'Home',
-        about: 'About',
-        experience: 'Experience',
-        skills: 'Skills',
-        projects: 'Projects',
-        contact: 'Contact',
-        heroTagline1: 'Data Scientist',
-        heroTagline2: 'AI Specialist',
-        heroTagline3: 'ML Engineer',
-        heroTagline4: 'Sports Analytics',
-        heroDescription: "Passionate about AI and its practical application in sports, computer vision and data analysis. I transform data into actionable insights.",
-        contactMe: 'Contact me',
-        experienceTitle: 'Experience',
-        experienceSubtitle: 'My journey in Data Science & Artificial Intelligence',
-        yearsExp: 'Years of experience',
-        companies: 'Companies',
-        projectsDone: 'Projects completed',
-        technologies: 'Technologies',
-        skillsTitle: 'Skills',
-        skillsSubtitle: 'Technologies and tools I master',
-        projectsTitle: 'Projects',
-        projectsSubtitle: 'Some achievements close to my heart',
-        contactTitle: 'Contact',
-        contactSubtitle: 'Want to collaborate? Let\'s talk!',
-        location: 'Location',
-        madeWith: 'Made with passion in Toulouse',
-        aiChatTitle: 'Ask me anything',
-        aiChatPlaceholder: 'Ask me a question...'
+    "en": {
+        "nav.home": "Home",
+        "nav.experience": "Experience",
+        "nav.skills": "Skills",
+        "nav.projects": "Projects",
+        "nav.contact": "Contact",
+        "hero.description": "Passionate about AI and its practical application in sports, computer vision and data analysis. I transform data into insights that make a difference.",
+        "hero.contactMe": "Contact Me",
+        "experience.title": "Experience",
+        "experience.subtitle": "My journey in Data Science & Artificial Intelligence",
+        "experience.stats.years": "Years of experience",
+        "experience.stats.companies": "Companies",
+        "experience.stats.projects": "Completed projects",
+        "experience.stats.technologies": "Technologies",
+        "jobs.asm.date": "Sept 2025 - Present",
+        "jobs.asm.description": "Sports performance analysis with advanced data science and machine learning techniques. Development of decision support tools for the technical staff.",
+        "jobs.toulouse.date": "Sept 2024 - Sept 2025",
+        "jobs.toulouse.description": "Development of AI solutions to optimize public services. Implementation of intelligent chatbots and recommendation systems to improve citizen experience.",
+        "jobs.mipih.date": "Sept 2023 - Sept 2024",
+        "jobs.mipih.description": "Creation of AI solutions to improve public health processes. Development of advanced NLP systems and creation of analytical dashboards for management.",
+        "jobs.fdti.date": "Sept 2021 - Sept 2023",
+        "jobs.fdti.description": "Creation of KPI dashboards and ML predictions. Automation of data cleaning processes and implementation of ETL pipelines.",
+        "jobs.axione.date": "June 2021 - August 2021",
+        "jobs.axione.description": "Support for IT teams in database administration. Data migration and SQL query optimization.",
+        "skills.title": "Skills",
+        "skills.subtitle": "Technologies and tools I master",
+        "projects.title": "Projects",
+        "projects.subtitle": "Some achievements close to my heart",
+        "projects.sourceCode": "Source Code",
+        "projects.rag.description": "Retrieval-Augmented Generation system using LLMs to improve response relevance by leveraging a knowledge base.",
+        "projects.rugby.description": "In-depth analysis of rugby statistics with ML to identify performance patterns and predict match outcomes.",
+        "projects.cv.description": "Deep learning application for real-time object detection and classification, with applications in the sports domain.",
+        "projects.rag.title": "RAG System",
+        "projects.rag.description": "Retrieval-Augmented Generation system using LLMs to improve response relevance by leveraging a knowledge base.",
+        "projects.rugby.title": "Rugby Stats Analysis",
+        "projects.rugby.description": "In-depth analysis of rugby statistics with ML to identify performance patterns and predict match outcomes.",
+        "projects.cv.title": "Computer Vision",
+        "projects.cv.description": "Deep learning application for real-time object detection and classification, with applications in the sports domain.",
+        "contact.title": "Contact",
+        "contact.subtitle": "Want to collaborate? Let's talk!",
+        "contact.location": "Location",
+        "ai.title": "AI Assistant",
+        "ai.subtitle": "Ask me questions about Mathieu",
+        "ai.placeholder": "Type your question...",
+        "ai.chatTitle": "Chat with my AI assistant",
+        "footer.madeWith": "Made with ❤️ and ☕ using HTML, CSS, JS"
     },
-    es: {
-        home: 'Inicio',
-        about: 'Acerca de',
-        experience: 'Experiencia',
-        skills: 'Habilidades',
-        projects: 'Proyectos',
-        contact: 'Contacto',
-        heroTagline1: 'Data Scientist',
-        heroTagline2: 'AI Specialist',
-        heroTagline3: 'ML Engineer',
-        heroTagline4: 'Sports Analytics',
-        heroDescription: "Apasionado por la IA y su aplicación práctica en deportes, computer vision y análisis de datos. Transformo datos en insights accionables.",
-        contactMe: 'Contáctame',
-        experienceTitle: 'Experiencia',
-        experienceSubtitle: 'Mi trayectoria en Data Science e Inteligencia Artificial',
-        yearsExp: 'Años de experiencia',
-        companies: 'Empresas',
-        projectsDone: 'Proyectos realizados',
-        technologies: 'Tecnologías',
-        skillsTitle: 'Habilidades',
-        skillsSubtitle: 'Tecnologías y herramientas que domino',
-        projectsTitle: 'Proyectos',
-        projectsSubtitle: 'Algunos logros que me importan',
-        contactTitle: 'Contacto',
-        contactSubtitle: '¿Quieres colaborar? ¡Hablemos!',
-        location: 'Ubicación',
-        madeWith: 'Hecho con pasión en Toulouse',
-        aiChatTitle: 'Pregúntame lo que quieras',
-        aiChatPlaceholder: 'Hazme una pregunta...'
+    "es": {
+        "nav.home": "Inicio",
+        "nav.experience": "Experiencia",
+        "nav.skills": "Competencias",
+        "nav.projects": "Proyectos",
+        "nav.contact": "Contacto",
+        "hero.description": "Apasionado por la IA y su aplicación práctica en el deporte, la visión por computadora y el análisis de datos. Transformo los datos en insights que marcan la diferencia.",
+        "hero.contactMe": "Contáctame",
+        "experience.title": "Experiencia",
+        "experience.subtitle": "Mi trayectoria en Data Science e Inteligencia Artificial",
+        "experience.stats.years": "Años de experiencia",
+        "experience.stats.companies": "Empresas",
+        "experience.stats.projects": "Proyectos realizados",
+        "experience.stats.technologies": "Tecnologías",
+        "jobs.asm.date": "Sept 2025 - Presente",
+        "jobs.asm.description": "Análisis del rendimiento deportivo con técnicas avanzadas de data science y machine learning. Desarrollo de herramientas de apoyo a la decisión para el personal técnico.",
+        "jobs.toulouse.date": "Sept 2024 - Sept 2025",
+        "jobs.toulouse.description": "Desarrollo de soluciones de IA para optimizar los servicios públicos. Implementación de chatbots inteligentes y sistemas de recomendación para mejorar la experiencia ciudadana.",
+        "jobs.mipih.date": "Sept 2023 - Sept 2024",
+        "jobs.mipih.description": "Creación de soluciones de IA para mejorar los procesos de salud pública. Desarrollo de sistemas NLP avanzados y creación de cuadros de mando analíticos para la dirección.",
+        "jobs.fdti.date": "Sept 2021 - Sept 2023",
+        "jobs.fdti.description": "Creación de cuadros de mando KPI y predicciones ML. Automatización de procesos de limpieza de datos e implementación de pipelines ETL.",
+        "jobs.axione.date": "Junio 2021 - Agosto 2021",
+        "jobs.axione.description": "Soporte a equipos IT en la administración de bases de datos. Migración de datos y optimización de consultas SQL.",
+        "skills.title": "Competencias",
+        "skills.subtitle": "Tecnologías y herramientas que domino",
+        "projects.title": "Proyectos",
+        "projects.subtitle": "Algunos logros que me importan",
+        "projects.sourceCode": "Código fuente",
+        "projects.rag.description": "Sistema de Retrieval-Augmented Generation que utiliza LLMs para mejorar la relevancia de las respuestas aprovechando una base de conocimientos.",
+        "projects.rugby.description": "Análisis profundo de estadísticas de rugby con ML para identificar patrones de rendimiento y predecir resultados de partidos.",
+        "projects.cv.description": "Aplicación de deep learning para la detección y clasificación de objetos en tiempo real, con aplicaciones en el ámbito deportivo.",
+        "projects.rag.title": "RAG System",
+        "projects.rag.description": "Sistema de Retrieval-Augmented Generation que utiliza LLMs para mejorar la relevancia de las respuestas aprovechando una base de conocimientos.",
+        "projects.rugby.title": "Rugby Stats Analysis",
+        "projects.rugby.description": "Análisis profundo de estadísticas de rugby con ML para identificar patrones de rendimiento y predecir resultados de partidos.",
+        "projects.cv.title": "Computer Vision",
+        "projects.cv.description": "Aplicación de deep learning para la detección y clasificación de objetos en tiempo real, con aplicaciones en el ámbito deportivo.",
+        "contact.title": "Contacto",
+        "contact.subtitle": "¿Quieres colaborar? ¡Hablemos!",
+        "contact.location": "Ubicación",
+        "ai.title": "Asistente IA",
+        "ai.subtitle": "Hazme preguntas sobre Mathieu",
+        "ai.placeholder": "Escribe tu pregunta...",
+        "ai.chatTitle": "Chatea con mi asistente IA",
+        "footer.madeWith": "Hecho con ❤️ y ☕ usando HTML, CSS, JS"
     },
-    it: {
-        home: 'Home',
-        about: 'Chi sono',
-        experience: 'Esperienza',
-        skills: 'Competenze',
-        projects: 'Progetti',
-        contact: 'Contatto',
-        heroTagline1: 'Data Scientist',
-        heroTagline2: 'AI Specialist',
-        heroTagline3: 'ML Engineer',
-        heroTagline4: 'Sports Analytics',
-        heroDescription: "Appassionato di IA e della sua applicazione pratica nello sport, computer vision e analisi dati. Trasformo i dati in insights azionabili.",
-        contactMe: 'Contattami',
-        experienceTitle: 'Esperienza',
-        experienceSubtitle: 'Il mio percorso in Data Science e Intelligenza Artificiale',
-        yearsExp: 'Anni di esperienza',
-        companies: 'Aziende',
-        projectsDone: 'Progetti realizzati',
-        technologies: 'Tecnologie',
-        skillsTitle: 'Competenze',
-        skillsSubtitle: 'Tecnologie e strumenti che padroneggio',
-        projectsTitle: 'Progetti',
-        projectsSubtitle: 'Alcune realizzazioni a cui tengo',
-        contactTitle: 'Contatto',
-        contactSubtitle: 'Vuoi collaborare? Parliamone!',
-        location: 'Posizione',
-        madeWith: 'Fatto con passione a Toulouse',
-        aiChatTitle: 'Chiedimi qualsiasi cosa',
-        aiChatPlaceholder: 'Fammi una domanda...'
+    "it": {
+        "nav.home": "Home",
+        "nav.experience": "Esperienza",
+        "nav.skills": "Competenze",
+        "nav.projects": "Progetti",
+        "nav.contact": "Contatto",
+        "hero.description": "Appassionato di IA e della sua applicazione pratica nello sport, nella computer vision e nell'analisi dei dati. Trasformo i dati in insights che fanno la differenza.",
+        "hero.contactMe": "Contattami",
+        "experience.title": "Esperienza",
+        "experience.subtitle": "Il mio percorso nella Data Science e nell'Intelligenza Artificiale",
+        "experience.stats.years": "Anni di esperienza",
+        "experience.stats.companies": "Aziende",
+        "experience.stats.projects": "Progetti realizzati",
+        "experience.stats.technologies": "Tecnologie",
+        "jobs.asm.date": "Sett 2025 - Presente",
+        "jobs.asm.description": "Analisi delle prestazioni sportive con tecniche avanzate di data science e machine learning. Sviluppo di strumenti di supporto alle decisioni per lo staff tecnico.",
+        "jobs.toulouse.date": "Sett 2024 - Sett 2025",
+        "jobs.toulouse.description": "Sviluppo di soluzioni di IA per ottimizzare i servizi pubblici. Implementazione di chatbot intelligenti e sistemi di raccomandazione per migliorare l'esperienza dei cittadini.",
+        "jobs.mipih.date": "Sett 2023 - Sett 2024",
+        "jobs.mipih.description": "Creazione di soluzioni di IA per migliorare i processi di salute pubblica. Sviluppo di sistemi NLP avanzati e creazione di dashboard analitiche per la direzione.",
+        "jobs.fdti.date": "Sett 2021 - Sett 2023",
+        "jobs.fdti.description": "Creazione di dashboard KPI e previsioni ML. Automazione dei processi di pulizia dei dati e implementazione di pipeline ETL.",
+        "jobs.axione.date": "Giugno 2021 - Agosto 2021",
+        "jobs.axione.description": "Supporto ai team IT nell'amministrazione di database. Migrazione dati e ottimizzazione delle query SQL.",
+        "skills.title": "Competenze",
+        "skills.subtitle": "Tecnologie e strumenti che padroneggio",
+        "projects.title": "Progetti",
+        "projects.subtitle": "Alcuni risultati che mi stanno a cuore",
+        "projects.sourceCode": "Codice sorgente",
+        "projects.rag.description": "Sistema di Retrieval-Augmented Generation che utilizza LLM per migliorare la pertinenza delle risposte basandosi su una base di conoscenze.",
+        "projects.rugby.description": "Analisi approfondita delle statistiche del rugby con ML per identificare i pattern di prestazione e prevedere i risultati delle partite.",
+        "projects.cv.description": "Applicazione di deep learning per il rilevamento e la classificazione di oggetti in tempo reale, con applicazioni nel campo sportivo.",
+        "projects.rag.title": "RAG System",
+        "projects.rag.description": "Sistema di Retrieval-Augmented Generation che utilizza LLM per migliorare la pertinenza delle risposte basandosi su una base di conoscenze.",
+        "projects.rugby.title": "Rugby Stats Analysis",
+        "projects.rugby.description": "Analisi approfondita delle statistiche del rugby con ML per identificare i pattern di prestazione e prevedere i risultati delle partite.",
+        "projects.cv.title": "Computer Vision",
+        "projects.cv.description": "Applicazione di deep learning per il rilevamento e la classificazione di oggetti in tempo reale, con applicazioni nel campo sportivo.",
+        "contact.title": "Contatto",
+        "contact.subtitle": "Vuoi collaborare? Parliamone!",
+        "contact.location": "Posizione",
+        "ai.title": "Assistente IA",
+        "ai.subtitle": "Fammi domande su Mathieu",
+        "ai.placeholder": "Scrivi la tua domanda...",
+        "ai.chatTitle": "Chatta con il mio assistente IA",
+        "footer.madeWith": "Realizzato con ❤️ e ☕ usando HTML, CSS, JS"
     }
 };
+
+
 
 let currentLang = localStorage.getItem('language') || 'fr';
 const langSelector = document.getElementById('langSelector');
@@ -730,7 +844,7 @@ if (langSelector) {
 function updateLanguage() {
     const t = translations[currentLang];
     
-    // Update nav links
+    // Update elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key]) {
@@ -738,11 +852,36 @@ function updateLanguage() {
         }
     });
     
-    // Update typing texts
-    texts[0] = t.heroTagline1;
-    texts[1] = t.heroTagline2;
-    texts[2] = t.heroTagline3;
-    texts[3] = t.heroTagline4;
+    // Update placeholders with data-i18n-placeholder attribute
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) {
+            el.setAttribute('placeholder', t[key]);
+        }
+    });
+    
+    // Update titles with data-i18n-title attribute
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        if (t[key]) {
+            el.setAttribute('title', t[key]);
+        }
+    });
+    
+    // Update typing texts if they exist
+    if (typeof texts !== 'undefined') {
+        if (t.hero && t.hero.tagline1) {
+            texts[0] = t.hero.tagline1 || 'Data Scientist';
+            texts[1] = t.hero.tagline2 || 'AI Specialist';
+            texts[2] = t.hero.tagline3 || 'ML Engineer';
+            texts[3] = t.hero.tagline4 || 'Sports Analytics';
+        }
+    }
+    
+    // Update AI Chat if it exists
+    if (typeof aiChatSuggestions !== 'undefined' && aiChatData[currentLang]) {
+        updateSuggestions();
+    }
 }
 
 // ====================================
