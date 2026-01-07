@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets - Mathieu Vassal | Data Scientist & AI Specialist</title>
+    <meta name="description" content="Découvrez les projets de data science et IA de Mathieu Vassal : RAG Systems, Sports Analytics, Computer Vision et plus encore.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Animated Canvas Background -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" onclick="window.location.href='index.html'">MV</div>
+        <ul class="nav-links">
+            <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+            <li><a href="about.html" data-i18n="nav.about">À propos</a></li>
+            <li><a href="projects.html" class="active" data-i18n="nav.projects">Projets</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Theme Toggle & Language Selector -->
+    <div class="controls-wrapper">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+            <i class="fas fa-sun"></i>
+        </button>
+        <div class="language-selector" title="Change language">
+            <select id="langSelector">
+                <option value="fr">🇫🇷 FR</option>
+                <option value="en">🇬🇧 EN</option>
+                <option value="es">🇪🇸 ES</option>
+                <option value="it">🇮🇹 IT</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 50vh;">
+        <div class="hero-content" style="grid-template-columns: 1fr; text-align: center;">
+            <div class="hero-text">
+                <h1 style="font-size: 4rem;" data-i18n="projects.pageTitle">Mes Projets</h1>
+                <p style="max-width: 800px; margin: 0 auto;" data-i18n="projects.pageSubtitle">
+                    Une sélection de projets qui illustrent ma passion pour la data science, 
+                    l'intelligence artificielle et l'innovation technologique.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Filter -->
+    <section id="projects-main" style="padding-top: 2rem;">
+        <div class="projects-filter scroll-reveal">
+            <button class="filter-btn active" data-filter="all" data-i18n="projects.filterAll">Tous</button>
+            <button class="filter-btn" data-filter="ai" data-i18n="projects.filterAI">IA & ML</button>
+            <button class="filter-btn" data-filter="sports" data-i18n="projects.filterSports">Sports</button>
+            <button class="filter-btn" data-filter="nlp" data-i18n="projects.filterNLP">NLP</button>
+            <button class="filter-btn" data-filter="vision" data-i18n="projects.filterVision">Vision</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            <!-- Project 1: RAG System -->
+            <div class="project-card-large scroll-reveal" data-category="ai nlp">
+                <div class="project-card-image">
+                    <div class="project-icon-large">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-status" data-i18n="projects.status.completed">Terminé</span>
+                    </div>
+                </div>
+                <div class="project-card-content">
+                    <div class="project-category">
+                        <span class="category-badge ai">AI</span>
+                        <span class="category-badge nlp">NLP</span>
+                    </div>
+                    <h3 class="project-card-title">RAG System</h3>
+                    <p class="project-card-description" data-i18n="projects.rag.fullDescription">
+                        Système de Retrieval-Augmented Generation utilisant des LLMs de dernière génération 
+                        pour améliorer la pertinence des réponses en s'appuyant sur une base de connaissances 
+                        vectorielle. Utilisation de Langchain, ChromaDB et OpenAI API.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Langchain</span>
+                        <span class="tech-tag">ChromaDB</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">FastAPI</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/MathAvecH" target="_blank" class="project-btn primary">
+                            <i class="fab fa-github"></i> <span data-i18n="projects.viewCode">Voir le code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Rugby Analytics -->
+            <div class="project-card-large scroll-reveal" data-category="sports ai">
+                <div class="project-card-image">
+                    <div class="project-icon-large">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-status ongoing" data-i18n="projects.status.ongoing">En cours</span>
+                    </div>
+                </div>
+                <div class="project-card-content">
+                    <div class="project-category">
+                        <span class="category-badge sports">Sports</span>
+                        <span class="category-badge ai">ML</span>
+                    </div>
+                    <h3 class="project-card-title">Rugby Stats Analysis</h3>
+                    <p class="project-card-description" data-i18n="projects.rugby.fullDescription">
+                        Analyse approfondie des statistiques de rugby professionnel avec modèles de machine learning 
+                        pour identifier les patterns de performance, prédire les résultats des matchs et optimiser 
+                        les stratégies d'équipe. Visualisations interactives avec Plotly.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">Plotly</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/MathAvecH" target="_blank" class="project-btn primary">
+                            <i class="fab fa-github"></i> <span data-i18n="projects.viewCode">Voir le code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Computer Vision -->
+            <div class="project-card-large scroll-reveal" data-category="vision ai">
+                <div class="project-card-image">
+                    <div class="project-icon-large">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-status" data-i18n="projects.status.completed">Terminé</span>
+                    </div>
+                </div>
+                <div class="project-card-content">
+                    <div class="project-category">
+                        <span class="category-badge vision">Vision</span>
+                        <span class="category-badge ai">Deep Learning</span>
+                    </div>
+                    <h3 class="project-card-title">Computer Vision Sports</h3>
+                    <p class="project-card-description" data-i18n="projects.cv.fullDescription">
+                        Application de deep learning pour la détection et le tracking de joueurs en temps réel 
+                        sur vidéo sportive. Utilisation de YOLO et DeepSORT pour l'analyse tactique et 
+                        le calcul des zones d'influence des joueurs.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">YOLOv8</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">DeepSORT</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/MathAvecH" target="_blank" class="project-btn primary">
+                            <i class="fab fa-github"></i> <span data-i18n="projects.viewCode">Voir le code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: NLP Healthcare -->
+            <div class="project-card-large scroll-reveal" data-category="nlp ai">
+                <div class="project-card-image">
+                    <div class="project-icon-large">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-status" data-i18n="projects.status.completed">Terminé</span>
+                    </div>
+                </div>
+                <div class="project-card-content">
+                    <div class="project-category">
+                        <span class="category-badge nlp">NLP</span>
+                        <span class="category-badge ai">Healthcare</span>
+                    </div>
+                    <h3 class="project-card-title" data-i18n="projects.nlpHealth.title">NLP Santé</h3>
+                    <p class="project-card-description" data-i18n="projects.nlpHealth.description">
+                        Système de traitement du langage naturel pour l'analyse de documents médicaux. 
+                        Extraction d'entités nommées, classification de pathologies et aide au diagnostic 
+                        basée sur Transformers et modèles CamemBERT fine-tunés.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Hugging Face</span>
+                        <span class="tech-tag">CamemBERT</span>
+                        <span class="tech-tag">SpaCy</span>
+                        <span class="tech-tag">Streamlit</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/MathAvecH" target="_blank" class="project-btn primary">
+                            <i class="fab fa-github"></i> <span data-i18n="projects.viewCode">Voir le code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Chatbot Public -->
+            <div class="project-card-large scroll-reveal" data-category="nlp ai">
+                <div class="project-card-image">
+                    <div class="project-icon-large">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-status" data-i18n="projects.status.completed">Terminé</span>
+                    </div>
+                </div>
+                <div class="project-card-content">
+                    <div class="project-category">
+                        <span class="category-badge nlp">Chatbot</span>
+                        <span class="category-badge ai">AI</span>
+                    </div>
+                    <h3 class="project-card-title" data-i18n="projects.chatbot.title">Chatbot Service Public</h3>
+                    <p class="project-card-description" data-i18n="projects.chatbot.description">
+                        Assistant conversationnel intelligent pour les services publics. Utilisation de 
+                        Spring AI et Kotlin pour le backend, avec intégration d'un système RAG pour 
+                        répondre aux questions des citoyens sur les démarches administratives.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">Spring AI</span>
+                        <span class="tech-tag">Elasticsearch</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Vue.js</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/MathAvecH" target="_blank" class="project-btn primary">
+                            <i class="fab fa-github"></i> <span data-i18n="projects.viewCode">Voir le code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: Data Pipeline -->
+            <div class="project-card-large scroll-reveal" data-category="ai">
+                <div class="project-card-image">
+                    <div class="project-icon-large">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-status" data-i18n="projects.status.completed">Terminé</span>
+                    </div>
+                </div>
+                <div class="project-card-content">
+                    <div class="project-category">
+                        <span class="category-badge ai">Data Engineering</span>
+                    </div>
+                    <h3 class="project-card-title" data-i18n="projects.pipeline.title">Pipeline de Données</h3>
+                    <p class="project-card-description" data-i18n="projects.pipeline.description">
+                        Architecture de pipeline ETL/ELT moderne pour le traitement de données massives. 
+                        Orchestration avec Airflow, stockage sur data lake, et visualisation avec 
+                        tableaux de bord interactifs pour le suivi des KPIs.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Airflow</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Dataiku</span>
+                        <span class="tech-tag">Talend</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/MathAvecH" target="_blank" class="project-btn primary">
+                            <i class="fab fa-github"></i> <span data-i18n="projects.viewCode">Voir le code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" style="text-align: center;">
+        <div class="scroll-reveal">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;" data-i18n="projects.cta.title">
+                Un projet en tête ?
+            </h2>
+            <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;" data-i18n="projects.cta.description">
+                Je suis toujours à la recherche de nouveaux défis passionnants. 
+                N'hésitez pas à me contacter pour discuter de votre projet !
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" class="btn btn-primary">
+                    <span><i class="fas fa-envelope"></i> <span data-i18n="projects.cta.contact">Me contacter</span></span>
+                </a>
+                <a href="https://github.com/MathAvecH" target="_blank" class="btn btn-secondary">
+                    <span><i class="fab fa-github"></i> GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chat Assistant -->
+    <div class="ai-chat-container">
+        <button class="ai-chat-trigger" id="aiChatTrigger" title="Discutez avec mon assistant IA">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="ai-chat-box" id="aiChatBox">
+            <div class="ai-chat-header">
+                <div>
+                    <h3><i class="fas fa-brain"></i> <span data-i18n="ai.title">Assistant IA</span></h3>
+                    <p class="ai-chat-subtitle" data-i18n="ai.subtitle">Posez-moi vos questions sur Mathieu</p>
+                </div>
+                <button class="ai-chat-close" id="aiChatClose">&times;</button>
+            </div>
+            <div class="ai-chat-messages" id="aiChatMessages"></div>
+            <div class="ai-chat-suggestions" id="aiChatSuggestions"></div>
+            <div class="ai-chat-input-container">
+                <input 
+                    type="text" 
+                    class="ai-chat-input" 
+                    id="aiChatInput" 
+                    placeholder="Tapez votre question..." data-i18n-placeholder="ai.placeholder"
+                    autocomplete="off"
+                />
+                <button class="ai-chat-send" id="aiChatSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html" class="footer-link" data-i18n="nav.home">Accueil</a>
+                <a href="about.html" class="footer-link" data-i18n="nav.about">À propos</a>
+                <a href="projects.html" class="footer-link" data-i18n="nav.projects">Projets</a>
+                <a href="contact.html" class="footer-link" data-i18n="nav.contact">Contact</a>
+            </div>
+            <p>&copy; 2025 Mathieu Vassal • Data Scientist & AI Specialist</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem; opacity: 0.7;">Made with ❤️ and ☕ using HTML, CSS, JS</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+    <script>
+        // Project Filtering
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                const cards = document.querySelectorAll('.project-card-large');
+                
+                cards.forEach(card => {
+                    const categories = card.dataset.category;
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

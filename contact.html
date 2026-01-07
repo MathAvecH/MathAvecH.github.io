@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Mathieu Vassal | Data Scientist & AI Specialist</title>
+    <meta name="description" content="Contactez Mathieu Vassal pour vos projets de data science et intelligence artificielle.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Animated Canvas Background -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" onclick="window.location.href='index.html'">MV</div>
+        <ul class="nav-links">
+            <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+            <li><a href="about.html" data-i18n="nav.about">À propos</a></li>
+            <li><a href="projects.html" data-i18n="nav.projects">Projets</a></li>
+            <li><a href="contact.html" class="active" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Theme Toggle & Language Selector -->
+    <div class="controls-wrapper">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+            <i class="fas fa-sun"></i>
+        </button>
+        <div class="language-selector" title="Change language">
+            <select id="langSelector">
+                <option value="fr">🇫🇷 FR</option>
+                <option value="en">🇬🇧 EN</option>
+                <option value="es">🇪🇸 ES</option>
+                <option value="it">🇮🇹 IT</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 50vh;">
+        <div class="hero-content" style="grid-template-columns: 1fr; text-align: center;">
+            <div class="hero-text">
+                <h1 style="font-size: 4rem;" data-i18n="contact.pageTitle">Contactez-moi</h1>
+                <p style="max-width: 800px; margin: 0 auto;" data-i18n="contact.pageSubtitle">
+                    Une question, un projet, une opportunité ? Je serai ravi d'échanger avec vous. 
+                    N'hésitez pas à me contacter via le moyen qui vous convient le mieux.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Main Section -->
+    <section id="contact-main">
+        <div class="contact-wrapper">
+            <!-- Contact Info Cards -->
+            <div class="contact-info-section scroll-reveal">
+                <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                    <div class="section-number">// 01</div>
+                    <h2 data-i18n="contact.infoTitle">Informations</h2>
+                </div>
+                
+                <div class="contact-info-grid">
+                    <a href="https://www.linkedin.com/in/mathieu-vassal/" target="_blank" class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>LinkedIn</h3>
+                            <p>mathieu-vassal</p>
+                            <span class="contact-info-action" data-i18n="contact.connect">Se connecter</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/MathAvecH" target="_blank" class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>GitHub</h3>
+                            <p>MathAvecH</p>
+                            <span class="contact-info-action" data-i18n="contact.viewProfile">Voir le profil</span>
+                        </div>
+                    </a>
+
+                    <a href="mailto:mathieu.vassal@example.com" class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Email</h3>
+                            <p data-i18n="contact.emailText">Envoyez-moi un message</p>
+                            <span class="contact-info-action" data-i18n="contact.sendEmail">Envoyer un email</span>
+                        </div>
+                    </a>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3 data-i18n="contact.location">Localisation</h3>
+                            <p>Toulouse, France</p>
+                            <span class="contact-info-action" data-i18n="contact.available">Disponible pour du remote</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-section scroll-reveal">
+                <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                    <div class="section-number">// 02</div>
+                    <h2 data-i18n="contact.formTitle">Envoyez un message</h2>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-i18n="contact.form.name">Nom complet</label>
+                        <input type="text" id="name" name="name" required data-i18n-placeholder="contact.form.namePlaceholder" placeholder="Votre nom">
+                        <div class="input-focus-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" data-i18n="contact.form.email">Email</label>
+                        <input type="email" id="email" name="email" required data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="votre@email.com">
+                        <div class="input-focus-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" data-i18n="contact.form.subject">Sujet</label>
+                        <select id="subject" name="subject" required>
+                            <option value="" data-i18n="contact.form.selectSubject">Sélectionnez un sujet</option>
+                            <option value="project" data-i18n="contact.form.subjectProject">Proposition de projet</option>
+                            <option value="job" data-i18n="contact.form.subjectJob">Opportunité professionnelle</option>
+                            <option value="collaboration" data-i18n="contact.form.subjectCollab">Collaboration</option>
+                            <option value="question" data-i18n="contact.form.subjectQuestion">Question</option>
+                            <option value="other" data-i18n="contact.form.subjectOther">Autre</option>
+                        </select>
+                        <div class="input-focus-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" data-i18n="contact.form.message">Message</label>
+                        <textarea id="message" name="message" rows="5" required data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="Décrivez votre projet ou votre question..."></textarea>
+                        <div class="input-focus-line"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <span><i class="fas fa-paper-plane"></i> <span data-i18n="contact.form.send">Envoyer le message</span></span>
+                        <div class="btn-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </form>
+
+                <div class="form-success" id="formSuccess">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 data-i18n="contact.form.successTitle">Message envoyé !</h3>
+                    <p data-i18n="contact.form.successMessage">Merci pour votre message. Je vous répondrai dans les plus brefs délais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability Section -->
+    <section id="availability" style="text-align: center;">
+        <div class="scroll-reveal">
+            <div class="availability-card">
+                <div class="availability-status">
+                    <span class="status-dot available"></span>
+                    <span data-i18n="contact.availableStatus">Disponible pour de nouveaux projets</span>
+                </div>
+                <h2 style="font-size: 2rem; margin: 1.5rem 0;" data-i18n="contact.availableTitle">
+                    Prêt pour le prochain défi
+                </h2>
+                <p style="color: var(--gray); max-width: 600px; margin: 0 auto 2rem;" data-i18n="contact.availableDescription">
+                    Je suis actuellement ouvert à de nouvelles opportunités en data science, 
+                    machine learning et intelligence artificielle, particulièrement dans le domaine du sport.
+                </p>
+                <div class="availability-tags">
+                    <span class="availability-tag"><i class="fas fa-check"></i> Data Science</span>
+                    <span class="availability-tag"><i class="fas fa-check"></i> Machine Learning</span>
+                    <span class="availability-tag"><i class="fas fa-check"></i> Sports Analytics</span>
+                    <span class="availability-tag"><i class="fas fa-check"></i> Computer Vision</span>
+                    <span class="availability-tag"><i class="fas fa-check"></i> NLP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chat Assistant -->
+    <div class="ai-chat-container">
+        <button class="ai-chat-trigger" id="aiChatTrigger" title="Discutez avec mon assistant IA">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="ai-chat-box" id="aiChatBox">
+            <div class="ai-chat-header">
+                <div>
+                    <h3><i class="fas fa-brain"></i> <span data-i18n="ai.title">Assistant IA</span></h3>
+                    <p class="ai-chat-subtitle" data-i18n="ai.subtitle">Posez-moi vos questions sur Mathieu</p>
+                </div>
+                <button class="ai-chat-close" id="aiChatClose">&times;</button>
+            </div>
+            <div class="ai-chat-messages" id="aiChatMessages"></div>
+            <div class="ai-chat-suggestions" id="aiChatSuggestions"></div>
+            <div class="ai-chat-input-container">
+                <input 
+                    type="text" 
+                    class="ai-chat-input" 
+                    id="aiChatInput" 
+                    placeholder="Tapez votre question..." data-i18n-placeholder="ai.placeholder"
+                    autocomplete="off"
+                />
+                <button class="ai-chat-send" id="aiChatSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html" class="footer-link" data-i18n="nav.home">Accueil</a>
+                <a href="about.html" class="footer-link" data-i18n="nav.about">À propos</a>
+                <a href="projects.html" class="footer-link" data-i18n="nav.projects">Projets</a>
+                <a href="contact.html" class="footer-link" data-i18n="nav.contact">Contact</a>
+            </div>
+            <p>&copy; 2025 Mathieu Vassal • Data Scientist & AI Specialist</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem; opacity: 0.7;">Made with ❤️ and ☕ using HTML, CSS, JS</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+    <script>
+        // Form handling
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = this.querySelector('.submit-btn');
+                submitBtn.classList.add('loading');
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    submitBtn.classList.remove('loading');
+                    contactForm.style.display = 'none';
+                    formSuccess.classList.add('show');
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>

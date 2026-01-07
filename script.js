@@ -8,6 +8,116 @@ window.addEventListener('load', () => {
 });
 
 // ====================================
+// SCROLL PROGRESS INDICATOR
+// ====================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Create scroll progress bar
+    const scrollProgress = document.createElement('div');
+    scrollProgress.className = 'scroll-progress';
+    document.body.appendChild(scrollProgress);
+    
+    window.addEventListener('scroll', () => {
+        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        scrollProgress.style.width = scrolled + '%';
+    });
+});
+
+// ====================================
+// NEURAL NETWORK BACKGROUND
+// ====================================
+document.addEventListener('DOMContentLoaded', () => {
+    const neuralBg = document.createElement('div');
+    neuralBg.className = 'neural-bg';
+    document.body.appendChild(neuralBg);
+});
+
+// ====================================
+// GLOW CARD MOUSE TRACKING
+// ====================================
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.glow-card, .skill-card, .project-card, .timeline-content').forEach(card => {
+        card.classList.add('glow-card');
+        
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mouse-x', x + '%');
+            card.style.setProperty('--mouse-y', y + '%');
+        });
+    });
+});
+
+// ====================================
+// PAGE TRANSITIONS
+// ====================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Create page transition element
+    const pageTransition = document.createElement('div');
+    pageTransition.className = 'page-transition';
+    document.body.appendChild(pageTransition);
+    
+    // Add transition on internal links
+    document.querySelectorAll('a[href^="index"], a[href^="about"], a[href^="projects"], a[href^="contact"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href && !href.startsWith('#') && !link.classList.contains('active')) {
+                e.preventDefault();
+                pageTransition.classList.add('active');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            }
+        });
+    });
+    
+    // Remove transition on page load
+    if (pageTransition.classList.contains('active')) {
+        pageTransition.classList.remove('active');
+        pageTransition.classList.add('leave');
+        setTimeout(() => {
+            pageTransition.classList.remove('leave');
+        }, 500);
+    }
+});
+
+// ====================================
+// ENHANCED NAV GLASSMORPHISM
+// ====================================
+document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.querySelector('nav');
+    if (nav) {
+        nav.classList.add('glass-enhanced');
+    }
+});
+
+// ====================================
+// 3D TILT EFFECT FOR CARDS
+// ====================================
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.skill-card, .project-card').forEach(card => {
+        card.classList.add('tilt-card');
+        
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const rotateX = (e.clientY - centerY) / 20;
+            const rotateY = (centerX - e.clientX) / 20;
+            
+            card.style.setProperty('--tilt-x', rotateX + 'deg');
+            card.style.setProperty('--tilt-y', rotateY + 'deg');
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--tilt-x', '0deg');
+            card.style.setProperty('--tilt-y', '0deg');
+        });
+    });
+});
+
+// ====================================
 // MOBILE MENU HAMBURGER
 // ====================================
 // Créer le bouton hamburger s'il n'existe pas
@@ -85,23 +195,26 @@ animateCursor();
 
 // Click effect on cursor
 document.addEventListener('mousedown', () => {
-    cursor.classList.add('click');
+    document.body.classList.add('cursor-click');
 });
 
 document.addEventListener('mouseup', () => {
-    cursor.classList.remove('click');
+    document.body.classList.remove('cursor-click');
 });
 
 // Hover effects for interactive elements
-document.querySelectorAll('a, button, .btn, .skill-card, .project-card, .contact-card, .stat-card, .orbit-icon').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
-    });
-    el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-    });
+const interactiveElements = 'a, button, .btn, .skill-card, .project-card, .contact-card, .stat-card, .orbit-icon, .timeline-content, input, select';
+
+document.body.addEventListener('mouseover', (e) => {
+    if (e.target.closest(interactiveElements)) {
+        document.body.classList.add('cursor-hover');
+    }
+});
+
+document.body.addEventListener('mouseout', (e) => {
+    if (e.target.closest(interactiveElements)) {
+        document.body.classList.remove('cursor-hover');
+    }
 });
 
 // ====================================
@@ -598,7 +711,471 @@ window.addEventListener('resize', createMobileMenu);
 createMobileMenu();
 
 console.log('%c🚀 Portfolio loaded successfully!', 'color: #10b981; font-size: 20px; font-weight: bold;');
-console.log('%c💡 Try the Konami Code: ↑↑↓↓←→←→BA', 'color: #3b82f6; font-size: 14px;');
+// ====================================
+// EDUCATION MODAL LOGIC
+// ====================================
+const educationData = {
+    fr: {
+        keyPointsTitle: "Points Clés",
+        clickHint: "Cliquez pour plus d'infos",
+        "sigma": {
+            title: "Mastère Spécialisé® Expert Data Science",
+            subtitle: "SIGMA Clermont (Bac+6)",
+            icon: "fa-graduation-cap",
+            details: [
+                { label: "Niveau", value: "Bac+6" },
+                { label: "Durée", value: "12 Mois" },
+                { label: "Enseignement", value: "400h" },
+                { label: "Langage", value: "Python" }
+            ],
+            description: "Formation d'excellence accréditée CGE, situant la Data Science au carrefour des mathématiques, de l'informatique et de l'expertise métier. L'objectif est de former des experts capables de piloter la stratégie de données de bout en bout, de la collecte à la valorisation par l'IA.",
+            points: [
+                "Analyse Numérique, Optimisation & Probabilités",
+                "Big Data & Architectures Distribuées (Hadoop, Spark)",
+                "Machine Learning & Deep Learning Avancé",
+                "Mission en entreprise de 22 semaines (Thèse professionnelle)"
+            ]
+        },
+        "m2-miage": {
+            title: "Master 2 MIAGE IDA",
+            subtitle: "Université Toulouse Capitole (Bac+5)",
+            icon: "fa-university",
+            details: [
+                { label: "Niveau", value: "Bac+5" },
+                { label: "Mention", value: "Bien" },
+                { label: "Classement", value: "2ème/Promo" },
+                { label: "Rythme", value: "Alternance" }
+            ],
+            description: "Spécialisation en Ingénierie des Données et Apprentissage (IDA). Une formation qui vise à former des cadres capables d'accompagner la transformation des organisations en 'Data Driven Companies' en maîtrisant le cycle de vie complet de la donnée.",
+            points: [
+                "Deep Learning & Intelligence Artificielle",
+                "Business Intelligence & Data Storytelling",
+                "Gouvernance des Données, Éthique & Green IT",
+                "Stratégie d'Entreprise & Gestion de Projet Agile"
+            ]
+        },
+        "m1-miage": {
+            title: "Master 1 MIAGE",
+            subtitle: "Université Toulouse Capitole (Bac+4)",
+            icon: "fa-code",
+            details: [
+                { label: "Niveau", value: "Bac+4" },
+                { label: "Mention", value: "Excellence" },
+                { label: "Classement", value: "Major" },
+                { label: "Rythme", value: "Alternance" }
+            ],
+            description: "Année charnière qui consolide les fondamentaux de l'ingénierie logicielle tout en introduisant les concepts avancés de la science des données. Obtention du Prix de l'Excellence Universitaire.",
+            points: [
+                "Développement Logiciel Avancé (Java, Python)",
+                "Conception de Bases de Données (SQL, NoSQL)",
+                "Machine Learning Fondamental (Scikit-learn)",
+                "Méthodes Agiles & Management des SI"
+            ]
+        },
+        "l3-miage": {
+            title: "Licence 3 MIAGE",
+            subtitle: "Université Toulouse Capitole (Bac+3)",
+            icon: "fa-laptop-code",
+            details: [
+                { label: "Niveau", value: "Bac+3" },
+                { label: "Mention", value: "Assez Bien" },
+                { label: "Focus", value: "Gestion & IT" },
+                { label: "Rythme", value: "Alternance" }
+            ],
+            description: "Formation à double compétence alliant informatique et gestion des entreprises. Elle prépare à la conception et au pilotage de systèmes d'information alignés sur les besoins métiers.",
+            points: [
+                "Modélisation des Systèmes d'Information (UML, Merise)",
+                "Algorithmique & Programmation Web",
+                "Gestion Financière, Comptabilité & Droit",
+                "Administration de Bases de Données"
+            ]
+        },
+        "dut-stid": {
+            title: "DUT STID",
+            subtitle: "IUT des Pays de l'Adour (Bac+2)",
+            icon: "fa-chart-pie",
+            details: [
+                { label: "Niveau", value: "Bac+2" },
+                { label: "Domaine", value: "Data" },
+                { label: "Outils", value: "SAS / R" },
+                { label: "Focus", value: "Statistiques" }
+            ],
+            description: "Formation technique solide spécialisée dans la statistique et l'informatique décisionnelle (Business Intelligence). Elle permet d'acquérir les bases essentielles du traitement et de l'analyse de données.",
+            points: [
+                "Statistiques Descriptives & Inférentielles",
+                "Programmation Statistique (SAS, R, Python)",
+                "Requêtage de Bases de Données (SQL)",
+                "Reporting & Visualisation de Données"
+            ]
+        }
+    },
+    en: {
+        keyPointsTitle: "Key Points",
+        clickHint: "Click for more info",
+        "sigma": {
+            title: "Advanced Master® Expert Data Science",
+            subtitle: "SIGMA Clermont (MSc+1)",
+            icon: "fa-graduation-cap",
+            details: [
+                { label: "Level", value: "MSc+1" },
+                { label: "Duration", value: "12 Months" },
+                { label: "Teaching", value: "400h" },
+                { label: "Language", value: "Python" }
+            ],
+            description: "Excellence program accredited by CGE, positioning Data Science at the crossroads of mathematics, computer science and business expertise. The goal is to train experts capable of driving data strategy end-to-end, from collection to AI-powered value creation.",
+            points: [
+                "Numerical Analysis, Optimization & Probability",
+                "Big Data & Distributed Architectures (Hadoop, Spark)",
+                "Advanced Machine Learning & Deep Learning",
+                "22-week company mission (Professional Thesis)"
+            ]
+        },
+        "m2-miage": {
+            title: "Master 2 MIAGE IDA",
+            subtitle: "Toulouse Capitole University (MSc)",
+            icon: "fa-university",
+            details: [
+                { label: "Level", value: "MSc" },
+                { label: "Honors", value: "With Honors" },
+                { label: "Ranking", value: "2nd/Class" },
+                { label: "Format", value: "Apprenticeship" }
+            ],
+            description: "Specialization in Data Engineering and Learning (IDA). A program aimed at training managers capable of driving organizational transformation into 'Data Driven Companies' by mastering the complete data lifecycle.",
+            points: [
+                "Deep Learning & Artificial Intelligence",
+                "Business Intelligence & Data Storytelling",
+                "Data Governance, Ethics & Green IT",
+                "Business Strategy & Agile Project Management"
+            ]
+        },
+        "m1-miage": {
+            title: "Master 1 MIAGE",
+            subtitle: "Toulouse Capitole University (BSc+1)",
+            icon: "fa-code",
+            details: [
+                { label: "Level", value: "BSc+1" },
+                { label: "Honors", value: "Excellence" },
+                { label: "Ranking", value: "Valedictorian" },
+                { label: "Format", value: "Apprenticeship" }
+            ],
+            description: "Pivotal year consolidating software engineering fundamentals while introducing advanced data science concepts. Awarded the University Excellence Prize.",
+            points: [
+                "Advanced Software Development (Java, Python)",
+                "Database Design (SQL, NoSQL)",
+                "Fundamental Machine Learning (Scikit-learn)",
+                "Agile Methods & IS Management"
+            ]
+        },
+        "l3-miage": {
+            title: "Bachelor 3 MIAGE",
+            subtitle: "Toulouse Capitole University (BSc)",
+            icon: "fa-laptop-code",
+            details: [
+                { label: "Level", value: "BSc" },
+                { label: "Honors", value: "With Honors" },
+                { label: "Focus", value: "Management & IT" },
+                { label: "Format", value: "Apprenticeship" }
+            ],
+            description: "Dual-competency program combining computer science and business management. It prepares for the design and management of information systems aligned with business needs.",
+            points: [
+                "Information Systems Modeling (UML, Merise)",
+                "Algorithms & Web Programming",
+                "Financial Management, Accounting & Law",
+                "Database Administration"
+            ]
+        },
+        "dut-stid": {
+            title: "DUT STID",
+            subtitle: "IUT Pays de l'Adour (Associate Degree)",
+            icon: "fa-chart-pie",
+            details: [
+                { label: "Level", value: "Associate" },
+                { label: "Domain", value: "Data" },
+                { label: "Tools", value: "SAS / R" },
+                { label: "Focus", value: "Statistics" }
+            ],
+            description: "Solid technical training specialized in statistics and business intelligence. It provides the essential foundations of data processing and analysis.",
+            points: [
+                "Descriptive & Inferential Statistics",
+                "Statistical Programming (SAS, R, Python)",
+                "Database Querying (SQL)",
+                "Reporting & Data Visualization"
+            ]
+        }
+    },
+    es: {
+        keyPointsTitle: "Puntos Clave",
+        clickHint: "Haz clic para más info",
+        "sigma": {
+            title: "Máster Especializado® Experto Data Science",
+            subtitle: "SIGMA Clermont (Máster+1)",
+            icon: "fa-graduation-cap",
+            details: [
+                { label: "Nivel", value: "Máster+1" },
+                { label: "Duración", value: "12 Meses" },
+                { label: "Enseñanza", value: "400h" },
+                { label: "Lenguaje", value: "Python" }
+            ],
+            description: "Formación de excelencia acreditada por CGE, situando la Data Science en la encrucijada de las matemáticas, la informática y la experiencia empresarial. El objetivo es formar expertos capaces de pilotar la estrategia de datos de principio a fin.",
+            points: [
+                "Análisis Numérico, Optimización y Probabilidades",
+                "Big Data y Arquitecturas Distribuidas (Hadoop, Spark)",
+                "Machine Learning y Deep Learning Avanzado",
+                "Misión en empresa de 22 semanas (Tesis profesional)"
+            ]
+        },
+        "m2-miage": {
+            title: "Máster 2 MIAGE IDA",
+            subtitle: "Universidad Toulouse Capitole (Máster)",
+            icon: "fa-university",
+            details: [
+                { label: "Nivel", value: "Máster" },
+                { label: "Mención", value: "Bien" },
+                { label: "Clasificación", value: "2º/Promoción" },
+                { label: "Formato", value: "Alternancia" }
+            ],
+            description: "Especialización en Ingeniería de Datos y Aprendizaje (IDA). Una formación que busca formar directivos capaces de acompañar la transformación de las organizaciones en 'Data Driven Companies'.",
+            points: [
+                "Deep Learning e Inteligencia Artificial",
+                "Business Intelligence y Data Storytelling",
+                "Gobernanza de Datos, Ética y Green IT",
+                "Estrategia Empresarial y Gestión de Proyectos Ágil"
+            ]
+        },
+        "m1-miage": {
+            title: "Máster 1 MIAGE",
+            subtitle: "Universidad Toulouse Capitole (Grado+1)",
+            icon: "fa-code",
+            details: [
+                { label: "Nivel", value: "Grado+1" },
+                { label: "Mención", value: "Excelencia" },
+                { label: "Clasificación", value: "Mejor" },
+                { label: "Formato", value: "Alternancia" }
+            ],
+            description: "Año clave que consolida los fundamentos de la ingeniería de software mientras introduce conceptos avanzados de ciencia de datos. Premio a la Excelencia Universitaria.",
+            points: [
+                "Desarrollo de Software Avanzado (Java, Python)",
+                "Diseño de Bases de Datos (SQL, NoSQL)",
+                "Machine Learning Fundamental (Scikit-learn)",
+                "Métodos Ágiles y Gestión de SI"
+            ]
+        },
+        "l3-miage": {
+            title: "Licenciatura 3 MIAGE",
+            subtitle: "Universidad Toulouse Capitole (Grado)",
+            icon: "fa-laptop-code",
+            details: [
+                { label: "Nivel", value: "Grado" },
+                { label: "Mención", value: "Notable" },
+                { label: "Enfoque", value: "Gestión e IT" },
+                { label: "Formato", value: "Alternancia" }
+            ],
+            description: "Formación de doble competencia combinando informática y gestión empresarial. Prepara para el diseño y gestión de sistemas de información alineados con las necesidades del negocio.",
+            points: [
+                "Modelado de Sistemas de Información (UML, Merise)",
+                "Algoritmia y Programación Web",
+                "Gestión Financiera, Contabilidad y Derecho",
+                "Administración de Bases de Datos"
+            ]
+        },
+        "dut-stid": {
+            title: "DUT STID",
+            subtitle: "IUT Pays de l'Adour (Técnico Superior)",
+            icon: "fa-chart-pie",
+            details: [
+                { label: "Nivel", value: "Técnico" },
+                { label: "Dominio", value: "Data" },
+                { label: "Herramientas", value: "SAS / R" },
+                { label: "Enfoque", value: "Estadística" }
+            ],
+            description: "Formación técnica sólida especializada en estadística e informática decisional. Proporciona las bases esenciales del tratamiento y análisis de datos.",
+            points: [
+                "Estadística Descriptiva e Inferencial",
+                "Programación Estadística (SAS, R, Python)",
+                "Consultas de Bases de Datos (SQL)",
+                "Reporting y Visualización de Datos"
+            ]
+        }
+    },
+    it: {
+        keyPointsTitle: "Punti Chiave",
+        clickHint: "Clicca per maggiori info",
+        "sigma": {
+            title: "Master Specializzato® Esperto Data Science",
+            subtitle: "SIGMA Clermont (Master+1)",
+            icon: "fa-graduation-cap",
+            details: [
+                { label: "Livello", value: "Master+1" },
+                { label: "Durata", value: "12 Mesi" },
+                { label: "Insegnamento", value: "400h" },
+                { label: "Linguaggio", value: "Python" }
+            ],
+            description: "Formazione di eccellenza accreditata CGE, posizionando la Data Science all'incrocio tra matematica, informatica e competenza aziendale. L'obiettivo è formare esperti in grado di guidare la strategia dati dall'inizio alla fine.",
+            points: [
+                "Analisi Numerica, Ottimizzazione e Probabilità",
+                "Big Data e Architetture Distribuite (Hadoop, Spark)",
+                "Machine Learning e Deep Learning Avanzato",
+                "Missione in azienda di 22 settimane (Tesi professionale)"
+            ]
+        },
+        "m2-miage": {
+            title: "Master 2 MIAGE IDA",
+            subtitle: "Università Toulouse Capitole (Master)",
+            icon: "fa-university",
+            details: [
+                { label: "Livello", value: "Master" },
+                { label: "Menzione", value: "Bene" },
+                { label: "Classifica", value: "2°/Corso" },
+                { label: "Formato", value: "Apprendistato" }
+            ],
+            description: "Specializzazione in Ingegneria dei Dati e Apprendimento (IDA). Una formazione che mira a formare dirigenti capaci di accompagnare la trasformazione delle organizzazioni in 'Data Driven Companies'.",
+            points: [
+                "Deep Learning e Intelligenza Artificiale",
+                "Business Intelligence e Data Storytelling",
+                "Governance dei Dati, Etica e Green IT",
+                "Strategia Aziendale e Gestione Progetti Agile"
+            ]
+        },
+        "m1-miage": {
+            title: "Master 1 MIAGE",
+            subtitle: "Università Toulouse Capitole (Laurea+1)",
+            icon: "fa-code",
+            details: [
+                { label: "Livello", value: "Laurea+1" },
+                { label: "Menzione", value: "Eccellenza" },
+                { label: "Classifica", value: "Migliore" },
+                { label: "Formato", value: "Apprendistato" }
+            ],
+            description: "Anno chiave che consolida i fondamenti dell'ingegneria del software introducendo concetti avanzati di data science. Premio all'Eccellenza Universitaria.",
+            points: [
+                "Sviluppo Software Avanzato (Java, Python)",
+                "Progettazione Database (SQL, NoSQL)",
+                "Machine Learning Fondamentale (Scikit-learn)",
+                "Metodi Agili e Gestione SI"
+            ]
+        },
+        "l3-miage": {
+            title: "Laurea 3 MIAGE",
+            subtitle: "Università Toulouse Capitole (Laurea)",
+            icon: "fa-laptop-code",
+            details: [
+                { label: "Livello", value: "Laurea" },
+                { label: "Menzione", value: "Discreto" },
+                { label: "Focus", value: "Gestione e IT" },
+                { label: "Formato", value: "Apprendistato" }
+            ],
+            description: "Formazione a doppia competenza che combina informatica e gestione aziendale. Prepara alla progettazione e gestione di sistemi informativi allineati alle esigenze aziendali.",
+            points: [
+                "Modellazione Sistemi Informativi (UML, Merise)",
+                "Algoritmi e Programmazione Web",
+                "Gestione Finanziaria, Contabilità e Diritto",
+                "Amministrazione Database"
+            ]
+        },
+        "dut-stid": {
+            title: "DUT STID",
+            subtitle: "IUT Pays de l'Adour (Diploma)",
+            icon: "fa-chart-pie",
+            details: [
+                { label: "Livello", value: "Diploma" },
+                { label: "Dominio", value: "Data" },
+                { label: "Strumenti", value: "SAS / R" },
+                { label: "Focus", value: "Statistica" }
+            ],
+            description: "Formazione tecnica solida specializzata in statistica e informatica decisionale. Fornisce le basi essenziali del trattamento e analisi dei dati.",
+            points: [
+                "Statistica Descrittiva e Inferenziale",
+                "Programmazione Statistica (SAS, R, Python)",
+                "Query Database (SQL)",
+                "Reporting e Visualizzazione Dati"
+            ]
+        }
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('educationModal');
+    if (!modal) return;
+
+    const closeBtn = modal.querySelector('.modal-close');
+    const modalContent = modal.querySelector('.modal-content');
+    
+    // Elements to populate
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalSubtitle = modal.querySelector('.modal-subtitle');
+    const modalIcon = modal.querySelector('.modal-icon i');
+    const modalGrid = modal.querySelector('.modal-details-grid');
+    const modalDesc = modal.querySelector('.modal-description');
+    const modalPoints = modal.querySelector('.modal-points');
+    const modalSectionTitle = modal.querySelector('.modal-section-title');
+
+    // Open Modal Function
+    function openModal(id) {
+        // Get current language, fallback to 'fr'
+        const lang = localStorage.getItem('language') || 'fr';
+        const langData = educationData[lang] || educationData.fr;
+        const data = langData[id];
+        if (!data) return;
+
+        // Populate Content
+        modalTitle.textContent = data.title;
+        modalSubtitle.textContent = data.subtitle;
+        modalIcon.className = `fas ${data.icon || 'fa-graduation-cap'}`;
+        modalDesc.textContent = data.description;
+        
+        // Update section title based on language
+        if (modalSectionTitle) {
+            modalSectionTitle.textContent = langData.keyPointsTitle || "Points Clés";
+        }
+
+        // Populate Details Grid
+        modalGrid.innerHTML = data.details.map(item => `
+            <div class="modal-detail-item">
+                <span class="modal-detail-value">${item.value}</span>
+                <span class="modal-detail-label">${item.label}</span>
+            </div>
+        `).join('');
+
+        // Populate Points
+        modalPoints.innerHTML = data.points.map(point => `
+            <li>${point}</li>
+        `).join('');
+
+        // Show Modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    // Close Modal Function
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Event Listeners
+    document.querySelectorAll('.timeline-content[data-id]').forEach(item => {
+        item.addEventListener('click', () => {
+            const id = item.getAttribute('data-id');
+            openModal(id);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+});
 // ====================================
 // DARK / LIGHT MODE TOGGLE
 // ====================================
@@ -639,12 +1216,62 @@ if (themeToggle) {
 const translations = {
     "fr": {
         "nav.home": "Accueil",
+        "nav.about": "À propos",
         "nav.experience": "Expérience",
         "nav.skills": "Compétences",
         "nav.projects": "Projets",
         "nav.contact": "Contact",
         "hero.description": "Passionné par l'IA et son application concrète dans le sport, la computer vision et l'analyse de données. Je transforme les données en insights qui font la différence.",
         "hero.contactMe": "Me contacter",
+        "about.pageTitle": "À propos de moi",
+        "about.pageSubtitle": "Passionné de data science depuis mes débuts, j'ai construit mon expertise à travers des expériences variées dans des secteurs innovants. Découvrez mon parcours et ma vision de l'intelligence artificielle.",
+        "about.story.title": "Mon Histoire",
+        "about.story.subtitle": "Comment je suis arrivé jusqu'ici",
+        "about.story.p1": "Ma passion pour la data science est née d'une fascination pour les mathématiques et l'informatique. À 23 ans, j'ai déjà eu l'opportunité de travailler sur des projets passionnants dans des domaines variés : santé, services publics, et maintenant le sport.",
+        "about.story.p2": "Ce qui me drive vraiment, c'est de voir l'impact concret de mes analyses. Que ce soit pour améliorer la performance d'une équipe de rugby, optimiser des services pour des citoyens, ou aider des professionnels de santé dans leurs décisions, je cherche toujours à créer de la valeur mesurable.",
+        "about.story.p3": "Au-delà du code et des modèles, je crois fermement que la data science est avant tout une discipline au service de l'humain. C'est pourquoi je m'efforce de rendre mes analyses accessibles et actionnables, en gardant toujours en tête l'utilisateur final.",
+        "about.expertise.title": "Domaines d'Expertise",
+        "about.expertise.subtitle": "Mes spécialités techniques",
+        "about.expertise.sports.title": "Sports Analytics",
+        "about.expertise.sports.desc": "Analyse de performance sportive, tracking de joueurs, prédiction de résultats, et optimisation des stratégies d'équipe.",
+        "about.expertise.vision.title": "Computer Vision",
+        "about.expertise.vision.desc": "Détection d'objets, reconnaissance d'images, segmentation sémantique, et traitement vidéo en temps réel.",
+        "about.expertise.nlp.title": "NLP & LLMs",
+        "about.expertise.nlp.desc": "Traitement du langage naturel, chatbots intelligents, systèmes RAG, et fine-tuning de modèles de langage.",
+        "about.expertise.predictive.title": "Predictive Analytics",
+        "about.expertise.predictive.desc": "Modélisation prédictive, séries temporelles, forecasting, et optimisation de processus métier.",
+        "about.expertise.dataeng.title": "Data Engineering",
+        "about.expertise.dataeng.desc": "Architecture de données, ETL/ELT, data pipelines, et optimisation de requêtes SQL complexes.",
+        "about.expertise.mlops.title": "MLOps",
+        "about.expertise.mlops.desc": "Déploiement de modèles, CI/CD pour ML, monitoring de performance, et gestion du cycle de vie des modèles.",
+        "about.values.title": "Valeurs & Approche",
+        "about.values.subtitle": "Comment je travaille",
+        "about.values.results.title": "Orienté Résultats",
+        "about.values.results.desc": "Chaque projet doit avoir un impact mesurable. Je privilégie les solutions pragmatiques qui apportent une réelle valeur métier.",
+        "about.values.collab.title": "Collaboration",
+        "about.values.collab.desc": "La data science est un travail d'équipe. J'aime échanger avec les métiers pour comprendre leurs besoins et co-construire des solutions.",
+        "about.values.learning.title": "Apprentissage Continu",
+        "about.values.learning.desc": "L'IA évolue rapidement. Je consacre du temps à la veille technologique et à l'expérimentation de nouvelles approches.",
+        "about.values.quality.title": "Qualité du Code",
+        "about.values.quality.desc": "Code propre, documenté, testé. Je crois aux bonnes pratiques et à la maintenabilité du code sur le long terme.",
+        "about.values.dataviz.title": "Data Viz",
+        "about.values.dataviz.desc": "Les insights n'ont de valeur que s'ils sont compris. J'accorde une grande importance à la visualisation et à la communication des résultats.",
+        "about.values.agile.title": "Agilité",
+        "about.values.agile.desc": "Itération rapide, prototypage, feedback continu. Je m'adapte aux contraintes et j'ajuste mon approche selon les besoins.",
+        "about.interests.title": "Au-delà du Code",
+        "about.interests.subtitle": "Mes passions et centres d'intérêt",
+        "about.interests.rugby.title": "Rugby",
+        "about.interests.rugby.desc": "Grand fan de rugby (particulièrement l'ASM Clermont !). C'est d'ailleurs cette passion qui m'a naturellement orienté vers les sports analytics.",
+        "about.interests.ai.title": "IA & Tech",
+        "about.interests.ai.desc": "Veille constante sur les dernières avancées en IA, LLMs, et technologies émergentes. J'aime expérimenter avec de nouveaux outils et frameworks.",
+        "about.interests.outdoor.title": "Outdoor",
+        "about.interests.outdoor.desc": "Randonnée, trail, vélo. J'aime me déconnecter en explorant la nature, particulièrement les Pyrénées qui ne sont pas loin de Toulouse.",
+        "about.interests.community.title": "Communauté",
+        "about.interests.community.desc": "Participer à des meetups tech, partager mes connaissances, et apprendre des autres. La communauté data science est incroyablement enrichissante.",
+        "about.cta.title": "Envie d'en discuter ?",
+        "about.cta.desc": "Je suis toujours ouvert à de nouvelles opportunités et collaborations. N'hésitez pas à me contacter !",
+        "about.cta.btn_contact": "Me contacter",
+        "about.cta.btn_projects": "Voir mes projets",
         "experience.title": "Expérience",
         "experience.subtitle": "Mon parcours en Data Science & Intelligence Artificielle",
         "experience.stats.years": "Années d'expérience",
@@ -661,23 +1288,75 @@ const translations = {
         "jobs.fdti.description": "Création de tableaux de bord KPI et de prédictions ML. Automatisation de processus de nettoyage de données et implémentation de pipelines ETL.",
         "jobs.axione.date": "Juin 2021 - Août 2021",
         "jobs.axione.description": "Support aux équipes IT dans l'administration de bases de données. Migration de données et optimisation des requêtes SQL.",
+        "education.title": "Formation",
+        "education.subtitle": "Mon parcours académique",
+        "education.sigma.date": "Sept 2025 - Sept 2026",
+        "education.sigma.title": "Mastère Spécialisé® Expert Data Science",
+        "education.sigma.description": "Expert en Science des Données, Data Science. Analyse numérique, Probabilités et statistique, Big data, Machine Learning.",
+        "education.m2.date": "Sept 2024 - Sept 2025",
+        "education.m2.title": "Master 2 MIAGE",
+        "education.m2.description": "Ingénierie des Données et Apprentissage. Obtenu mention Bien (2ème de Promotion).",
+        "education.m1.date": "Sept 2023 - Sept 2024",
+        "education.m1.title": "Master 1 MIAGE",
+        "education.m1.description": "Ingénierie des Données et Apprentissage. Prix de l'Excellence (Major de Promotion).",
+        "education.l3.date": "Sept 2022 - Sept 2023",
+        "education.l3.title": "Licence 3 MIAGE",
+        "education.l3.description": "Mathématiques et informatique. Obtenu mention Assez Bien.",
+        "education.dut.date": "2020 - 2022",
+        "education.dut.title": "DUT STID",
+        "education.dut.description": "Statistique et Informatique Décisionnelle.",
         "skills.title": "Compétences",
         "skills.subtitle": "Technologies et outils que je maîtrise",
         "projects.title": "Projets",
         "projects.subtitle": "Quelques réalisations qui me tiennent à cœur",
         "projects.sourceCode": "Code source",
+        "projects.pageTitle": "Mes Projets",
+        "projects.pageSubtitle": "Une sélection de projets qui illustrent ma passion pour la data science, l'intelligence artificielle et l'innovation technologique.",
+        "projects.filterAll": "Tous",
+        "projects.filterAI": "IA & ML",
+        "projects.filterSports": "Sports",
+        "projects.filterNLP": "NLP",
+        "projects.filterVision": "Vision",
+        "projects.viewCode": "Voir le code",
+        "projects.status.completed": "Terminé",
+        "projects.status.ongoing": "En cours",
         "projects.rag.description": "Système de Retrieval-Augmented Generation utilisant des LLMs pour améliorer la pertinence des réponses en s'appuyant sur une base de connaissances.",
         "projects.rugby.description": "Analyse approfondie des statistiques de rugby avec ML pour identifier les patterns de performance et prédire les résultats des matchs.",
         "projects.cv.description": "Application de deep learning pour la détection et classification d'objets en temps réel, avec applications dans le domaine sportif.",
-        "projects.rag.title": "RAG System",
-        "projects.rag.description": "Système de Retrieval-Augmented Generation utilisant des LLMs pour améliorer la pertinence des réponses en s'appuyant sur une base de connaissances.",
-        "projects.rugby.title": "Rugby Stats Analysis",
-        "projects.rugby.description": "Analyse approfondie des statistiques de rugby avec ML pour identifier les patterns de performance et prédire les résultats des matchs.",
-        "projects.cv.title": "Computer Vision",
-        "projects.cv.description": "Application de deep learning pour la détection et classification d'objets en temps réel, avec applications dans le domaine sportif.",
+        "projects.cta.title": "Un projet en tête ?",
+        "projects.cta.description": "Je suis toujours à la recherche de nouveaux défis passionnants. N'hésitez pas à me contacter pour discuter de votre projet !",
+        "projects.cta.contact": "Me contacter",
         "contact.title": "Contact",
         "contact.subtitle": "Envie de collaborer ? Discutons !",
         "contact.location": "Localisation",
+        "contact.pageTitle": "Contactez-moi",
+        "contact.pageSubtitle": "Une question, un projet, une opportunité ? Je serai ravi d'échanger avec vous. N'hésitez pas à me contacter via le moyen qui vous convient le mieux.",
+        "contact.infoTitle": "Informations",
+        "contact.connect": "Se connecter",
+        "contact.viewProfile": "Voir le profil",
+        "contact.emailText": "Envoyez-moi un message",
+        "contact.sendEmail": "Envoyer un email",
+        "contact.available": "Disponible pour du remote",
+        "contact.formTitle": "Envoyez un message",
+        "contact.form.name": "Nom complet",
+        "contact.form.namePlaceholder": "Votre nom",
+        "contact.form.email": "Email",
+        "contact.form.emailPlaceholder": "votre@email.com",
+        "contact.form.subject": "Sujet",
+        "contact.form.selectSubject": "Sélectionnez un sujet",
+        "contact.form.subjectProject": "Proposition de projet",
+        "contact.form.subjectJob": "Opportunité professionnelle",
+        "contact.form.subjectCollab": "Collaboration",
+        "contact.form.subjectQuestion": "Question",
+        "contact.form.subjectOther": "Autre",
+        "contact.form.message": "Message",
+        "contact.form.messagePlaceholder": "Décrivez votre projet ou votre question...",
+        "contact.form.send": "Envoyer le message",
+        "contact.form.successTitle": "Message envoyé !",
+        "contact.form.successMessage": "Merci pour votre message. Je vous répondrai dans les plus brefs délais.",
+        "contact.availableStatus": "Disponible pour de nouveaux projets",
+        "contact.availableTitle": "Prêt pour le prochain défi",
+        "contact.availableDescription": "Je suis actuellement ouvert à de nouvelles opportunités en data science, machine learning et intelligence artificielle, particulièrement dans le domaine du sport.",
         "ai.title": "Assistant IA",
         "ai.subtitle": "Posez-moi vos questions sur Mathieu",
         "ai.placeholder": "Tapez votre question...",
@@ -686,12 +1365,62 @@ const translations = {
     },
     "en": {
         "nav.home": "Home",
+        "nav.about": "About",
         "nav.experience": "Experience",
         "nav.skills": "Skills",
         "nav.projects": "Projects",
         "nav.contact": "Contact",
         "hero.description": "Passionate about AI and its practical application in sports, computer vision and data analysis. I transform data into insights that make a difference.",
         "hero.contactMe": "Contact Me",
+        "about.pageTitle": "About Me",
+        "about.pageSubtitle": "Passionate about data science from the start, I built my expertise through varied experiences in innovative sectors. Discover my journey and my vision of artificial intelligence.",
+        "about.story.title": "My Story",
+        "about.story.subtitle": "How I got here",
+        "about.story.p1": "My passion for data science was born from a fascination for mathematics and computer science. At 23, I have already had the opportunity to work on exciting projects in various fields: health, public services, and now sports.",
+        "about.story.p2": "What really drives me is seeing the concrete impact of my analyses. Whether it is to improve the performance of a rugby team, optimize services for citizens, or help health professionals in their decisions, I always seek to create measurable value.",
+        "about.story.p3": "Beyond code and models, I firmly believe that data science is above all a discipline at the service of humans. That is why I strive to make my analyses accessible and actionable, always keeping the end user in mind.",
+        "about.expertise.title": "Fields of Expertise",
+        "about.expertise.subtitle": "My technical specialties",
+        "about.expertise.sports.title": "Sports Analytics",
+        "about.expertise.sports.desc": "Sports performance analysis, player tracking, result prediction, and team strategy optimization.",
+        "about.expertise.vision.title": "Computer Vision",
+        "about.expertise.vision.desc": "Object detection, image recognition, semantic segmentation, and real-time video processing.",
+        "about.expertise.nlp.title": "NLP & LLMs",
+        "about.expertise.nlp.desc": "Natural Language Processing, intelligent chatbots, RAG systems, and language model fine-tuning.",
+        "about.expertise.predictive.title": "Predictive Analytics",
+        "about.expertise.predictive.desc": "Predictive modeling, time series, forecasting, and business process optimization.",
+        "about.expertise.dataeng.title": "Data Engineering",
+        "about.expertise.dataeng.desc": "Data architecture, ETL/ELT, data pipelines, and complex SQL query optimization.",
+        "about.expertise.mlops.title": "MLOps",
+        "about.expertise.mlops.desc": "Model deployment, CI/CD for ML, performance monitoring, and model lifecycle management.",
+        "about.values.title": "Values & Approach",
+        "about.values.subtitle": "How I work",
+        "about.values.results.title": "Result Oriented",
+        "about.values.results.desc": "Every project must have a measurable impact. I favor pragmatic solutions that bring real business value.",
+        "about.values.collab.title": "Collaboration",
+        "about.values.collab.desc": "Data science is teamwork. I like to exchange with business stakeholders to understand their needs and co-construct solutions.",
+        "about.values.learning.title": "Continuous Learning",
+        "about.values.learning.desc": "AI evolves rapidly. I dedicate time to technological watch and experimenting with new approaches.",
+        "about.values.quality.title": "Code Quality",
+        "about.values.quality.desc": "Clean, documented, tested code. I believe in best practices and code maintainability over the long term.",
+        "about.values.dataviz.title": "Data Viz",
+        "about.values.dataviz.desc": "Insights only have value if they are understood. I place great importance on visualization and communication of results.",
+        "about.values.agile.title": "Agility",
+        "about.values.agile.desc": "Rapid iteration, prototyping, continuous feedback. I adapt to constraints and adjust my approach according to needs.",
+        "about.interests.title": "Beyond Code",
+        "about.interests.subtitle": "My passions and interests",
+        "about.interests.rugby.title": "Rugby",
+        "about.interests.rugby.desc": "Big rugby fan (especially ASM Clermont!). It is this passion that naturally guided me towards sports analytics.",
+        "about.interests.ai.title": "AI & Tech",
+        "about.interests.ai.desc": "Constant watch on the latest advances in AI, LLMs, and emerging technologies. I like experimenting with new tools and frameworks.",
+        "about.interests.outdoor.title": "Outdoor",
+        "about.interests.outdoor.desc": "Hiking, trail running, cycling. I like to disconnect by exploring nature, especially the Pyrenees which are not far from Toulouse.",
+        "about.interests.community.title": "Community",
+        "about.interests.community.desc": "Participating in tech meetups, sharing my knowledge, and learning from others. The data science community is incredibly enriching.",
+        "about.cta.title": "Want to discuss?",
+        "about.cta.desc": "I am always open to new opportunities and collaborations. Do not hesitate to contact me!",
+        "about.cta.btn_contact": "Contact Me",
+        "about.cta.btn_projects": "See my projects",
         "experience.title": "Experience",
         "experience.subtitle": "My journey in Data Science & Artificial Intelligence",
         "experience.stats.years": "Years of experience",
@@ -708,23 +1437,75 @@ const translations = {
         "jobs.fdti.description": "Creation of KPI dashboards and ML predictions. Automation of data cleaning processes and implementation of ETL pipelines.",
         "jobs.axione.date": "June 2021 - August 2021",
         "jobs.axione.description": "Support for IT teams in database administration. Data migration and SQL query optimization.",
+        "education.title": "Education",
+        "education.subtitle": "My academic background",
+        "education.sigma.date": "Sept 2025 - Sept 2026",
+        "education.sigma.title": "Advanced Master® Expert Data Science",
+        "education.sigma.description": "Data Science Expert. Numerical analysis, Probability and Statistics, Big Data, Machine Learning.",
+        "education.m2.date": "Sept 2024 - Sept 2025",
+        "education.m2.title": "Master 2 MIAGE",
+        "education.m2.description": "Data Engineering and Learning. Obtained with Honors (2nd in Class).",
+        "education.m1.date": "Sept 2023 - Sept 2024",
+        "education.m1.title": "Master 1 MIAGE",
+        "education.m1.description": "Data Engineering and Learning. Excellence Award (Valedictorian).",
+        "education.l3.date": "Sept 2022 - Sept 2023",
+        "education.l3.title": "Bachelor 3 MIAGE",
+        "education.l3.description": "Mathematics and Computer Science. Obtained with Honors.",
+        "education.dut.date": "2020 - 2022",
+        "education.dut.title": "DUT STID",
+        "education.dut.description": "Statistics and Business Intelligence.",
         "skills.title": "Skills",
         "skills.subtitle": "Technologies and tools I master",
         "projects.title": "Projects",
         "projects.subtitle": "Some achievements close to my heart",
         "projects.sourceCode": "Source Code",
+        "projects.pageTitle": "My Projects",
+        "projects.pageSubtitle": "A selection of projects that illustrate my passion for data science, artificial intelligence and technological innovation.",
+        "projects.filterAll": "All",
+        "projects.filterAI": "AI & ML",
+        "projects.filterSports": "Sports",
+        "projects.filterNLP": "NLP",
+        "projects.filterVision": "Vision",
+        "projects.viewCode": "View code",
+        "projects.status.completed": "Completed",
+        "projects.status.ongoing": "In progress",
         "projects.rag.description": "Retrieval-Augmented Generation system using LLMs to improve response relevance by leveraging a knowledge base.",
         "projects.rugby.description": "In-depth analysis of rugby statistics with ML to identify performance patterns and predict match outcomes.",
         "projects.cv.description": "Deep learning application for real-time object detection and classification, with applications in the sports domain.",
-        "projects.rag.title": "RAG System",
-        "projects.rag.description": "Retrieval-Augmented Generation system using LLMs to improve response relevance by leveraging a knowledge base.",
-        "projects.rugby.title": "Rugby Stats Analysis",
-        "projects.rugby.description": "In-depth analysis of rugby statistics with ML to identify performance patterns and predict match outcomes.",
-        "projects.cv.title": "Computer Vision",
-        "projects.cv.description": "Deep learning application for real-time object detection and classification, with applications in the sports domain.",
+        "projects.cta.title": "Have a project in mind?",
+        "projects.cta.description": "I'm always looking for new exciting challenges. Don't hesitate to contact me to discuss your project!",
+        "projects.cta.contact": "Contact me",
         "contact.title": "Contact",
         "contact.subtitle": "Want to collaborate? Let's talk!",
         "contact.location": "Location",
+        "contact.pageTitle": "Contact Me",
+        "contact.pageSubtitle": "A question, a project, an opportunity? I'd be happy to discuss with you. Don't hesitate to contact me through your preferred channel.",
+        "contact.infoTitle": "Information",
+        "contact.connect": "Connect",
+        "contact.viewProfile": "View profile",
+        "contact.emailText": "Send me a message",
+        "contact.sendEmail": "Send an email",
+        "contact.available": "Available for remote work",
+        "contact.formTitle": "Send a message",
+        "contact.form.name": "Full name",
+        "contact.form.namePlaceholder": "Your name",
+        "contact.form.email": "Email",
+        "contact.form.emailPlaceholder": "your@email.com",
+        "contact.form.subject": "Subject",
+        "contact.form.selectSubject": "Select a subject",
+        "contact.form.subjectProject": "Project proposal",
+        "contact.form.subjectJob": "Job opportunity",
+        "contact.form.subjectCollab": "Collaboration",
+        "contact.form.subjectQuestion": "Question",
+        "contact.form.subjectOther": "Other",
+        "contact.form.message": "Message",
+        "contact.form.messagePlaceholder": "Describe your project or question...",
+        "contact.form.send": "Send message",
+        "contact.form.successTitle": "Message sent!",
+        "contact.form.successMessage": "Thank you for your message. I will get back to you as soon as possible.",
+        "contact.availableStatus": "Available for new projects",
+        "contact.availableTitle": "Ready for the next challenge",
+        "contact.availableDescription": "I'm currently open to new opportunities in data science, machine learning and artificial intelligence, particularly in the sports domain.",
         "ai.title": "AI Assistant",
         "ai.subtitle": "Ask me questions about Mathieu",
         "ai.placeholder": "Type your question...",
@@ -733,12 +1514,62 @@ const translations = {
     },
     "es": {
         "nav.home": "Inicio",
+        "nav.about": "Sobre mí",
         "nav.experience": "Experiencia",
         "nav.skills": "Competencias",
         "nav.projects": "Proyectos",
         "nav.contact": "Contacto",
         "hero.description": "Apasionado por la IA y su aplicación práctica en el deporte, la visión por computadora y el análisis de datos. Transformo los datos en insights que marcan la diferencia.",
         "hero.contactMe": "Contáctame",
+        "about.pageTitle": "Sobre mí",
+        "about.pageSubtitle": "Apasionado por la ciencia de datos desde mis inicios, construí mi experiencia a través de experiencias variadas en sectores innovadores. Descubre mi trayectoria y mi visión de la inteligencia artificial.",
+        "about.story.title": "Mi Historia",
+        "about.story.subtitle": "Cómo llegué hasta aquí",
+        "about.story.p1": "Mi pasión por la ciencia de datos nació de una fascinación por las matemáticas y la informática. A los 23 años, ya he tenido la oportunidad de trabajar en proyectos apasionantes en diversos campos: salud, servicios públicos y ahora deportes.",
+        "about.story.p2": "Lo que realmente me impulsa es ver el impacto concreto de mis análisis. Ya sea para mejorar el rendimiento de un equipo de rugby, optimizar servicios para ciudadanos o ayudar a profesionales de la salud en sus decisiones, siempre busco crear valor medible.",
+        "about.story.p3": "Más allá del código y los modelos, creo firmemente que la ciencia de datos es ante todo una disciplina al servicio del ser humano. Por eso me esfuerzo por hacer que mis análisis sean accesibles y accionables, teniendo siempre en mente al usuario final.",
+        "about.expertise.title": "Áreas de Experiencia",
+        "about.expertise.subtitle": "Mis especialidades técnicas",
+        "about.expertise.sports.title": "Sports Analytics",
+        "about.expertise.sports.desc": "Análisis de rendimiento deportivo, seguimiento de jugadores, predicción de resultados y optimización de estrategias de equipo.",
+        "about.expertise.vision.title": "Computer Vision",
+        "about.expertise.vision.desc": "Detección de objetos, reconocimiento de imágenes, segmentación semántica y procesamiento de video en tiempo real.",
+        "about.expertise.nlp.title": "NLP & LLMs",
+        "about.expertise.nlp.desc": "Procesamiento del lenguaje natural, chatbots inteligentes, sistemas RAG y ajuste fino de modelos de lenguaje.",
+        "about.expertise.predictive.title": "Predictive Analytics",
+        "about.expertise.predictive.desc": "Modelado predictivo, series temporales, pronósticos y optimización de procesos comerciales.",
+        "about.expertise.dataeng.title": "Data Engineering",
+        "about.expertise.dataeng.desc": "Arquitectura de datos, ETL/ELT, tuberías de datos y optimización de consultas SQL complejas.",
+        "about.expertise.mlops.title": "MLOps",
+        "about.expertise.mlops.desc": "Despliegue de modelos, CI/CD para ML, monitoreo de rendimiento y gestión del ciclo de vida de modelos.",
+        "about.values.title": "Valores y Enfoque",
+        "about.values.subtitle": "Cómo trabajo",
+        "about.values.results.title": "Orientado a Resultados",
+        "about.values.results.desc": "Cada proyecto debe tener un impacto medible. Privilegio las soluciones pragmáticas que aportan un valor real al negocio.",
+        "about.values.collab.title": "Colaboración",
+        "about.values.collab.desc": "La ciencia de datos es un trabajo en equipo. Me gusta intercambiar con los profesionales para entender sus necesidades y co-construir soluciones.",
+        "about.values.learning.title": "Aprendizaje Continuo",
+        "about.values.learning.desc": "La IA evoluciona rápidamente. Dedico tiempo a la vigilancia tecnológica y a la experimentación con nuevos enfoques.",
+        "about.values.quality.title": "Calidad del Código",
+        "about.values.quality.desc": "Código limpio, documentado y probado. Creo en las buenas prácticas y en la mantenibilidad del código a largo plazo.",
+        "about.values.dataviz.title": "Data Viz",
+        "about.values.dataviz.desc": "Los insights solo tienen valor si se entienden. Doy gran importancia a la visualización y comunicación de los resultados.",
+        "about.values.agile.title": "Agilidad",
+        "about.values.agile.desc": "Iteración rápida, creación de prototipos, retroalimentación continua. Me adapto a las limitaciones y ajusto mi enfoque según las necesidades.",
+        "about.interests.title": "Más allá del Código",
+        "about.interests.subtitle": "Mis pasiones e intereses",
+        "about.interests.rugby.title": "Rugby",
+        "about.interests.rugby.desc": "¡Gran fanático del rugby (especialmente del ASM Clermont!). Es esta pasión la que me guió naturalmente hacia el análisis deportivo.",
+        "about.interests.ai.title": "IA y Tecnología",
+        "about.interests.ai.desc": "Vigilancia constante sobre los últimos avances en IA, LLMs y tecnologías emergentes. Me gusta experimentar con nuevas herramientas y marcos.",
+        "about.interests.outdoor.title": "Outdoor",
+        "about.interests.outdoor.desc": "Senderismo, trail running, ciclismo. Me gusta desconectar explorando la naturaleza, especialmente los Pirineos que no están lejos de Toulouse.",
+        "about.interests.community.title": "Comunidad",
+        "about.interests.community.desc": "Participar en meetups tecnológicos, compartir mis conocimientos y aprender de los demás. La comunidad de ciencia de datos es increíblemente enriquecedora.",
+        "about.cta.title": "¿Quieres hablar?",
+        "about.cta.desc": "Siempre estoy abierto a nuevas oportunidades y colaboraciones. ¡No dudes en contactarme!",
+        "about.cta.btn_contact": "Contáctame",
+        "about.cta.btn_projects": "Ver mis proyectos",
         "experience.title": "Experiencia",
         "experience.subtitle": "Mi trayectoria en Data Science e Inteligencia Artificial",
         "experience.stats.years": "Años de experiencia",
@@ -755,23 +1586,75 @@ const translations = {
         "jobs.fdti.description": "Creación de cuadros de mando KPI y predicciones ML. Automatización de procesos de limpieza de datos e implementación de pipelines ETL.",
         "jobs.axione.date": "Junio 2021 - Agosto 2021",
         "jobs.axione.description": "Soporte a equipos IT en la administración de bases de datos. Migración de datos y optimización de consultas SQL.",
+        "education.title": "Formación",
+        "education.subtitle": "Mi trayectoria académica",
+        "education.sigma.date": "Sept 2025 - Sept 2026",
+        "education.sigma.title": "Máster Especializado® Experto Data Science",
+        "education.sigma.description": "Experto en Ciencia de Datos. Análisis numérico, Probabilidades y estadística, Big Data, Machine Learning.",
+        "education.m2.date": "Sept 2024 - Sept 2025",
+        "education.m2.title": "Máster 2 MIAGE",
+        "education.m2.description": "Ingeniería de Datos y Aprendizaje. Obtenido con Mención Bien (2º de Promoción).",
+        "education.m1.date": "Sept 2023 - Sept 2024",
+        "education.m1.title": "Máster 1 MIAGE",
+        "education.m1.description": "Ingeniería de Datos y Aprendizaje. Premio a la Excelencia (Mejor de Promoción).",
+        "education.l3.date": "Sept 2022 - Sept 2023",
+        "education.l3.title": "Licenciatura 3 MIAGE",
+        "education.l3.description": "Matemáticas e informática. Obtenido con Mención Bastante Bien.",
+        "education.dut.date": "2020 - 2022",
+        "education.dut.title": "DUT STID",
+        "education.dut.description": "Estadística e Informática Decisional.",
         "skills.title": "Competencias",
         "skills.subtitle": "Tecnologías y herramientas que domino",
         "projects.title": "Proyectos",
         "projects.subtitle": "Algunos logros que me importan",
         "projects.sourceCode": "Código fuente",
+        "projects.pageTitle": "Mis Proyectos",
+        "projects.pageSubtitle": "Una selección de proyectos que ilustran mi pasión por la ciencia de datos, la inteligencia artificial y la innovación tecnológica.",
+        "projects.filterAll": "Todos",
+        "projects.filterAI": "IA & ML",
+        "projects.filterSports": "Deportes",
+        "projects.filterNLP": "NLP",
+        "projects.filterVision": "Visión",
+        "projects.viewCode": "Ver código",
+        "projects.status.completed": "Terminado",
+        "projects.status.ongoing": "En curso",
         "projects.rag.description": "Sistema de Retrieval-Augmented Generation que utiliza LLMs para mejorar la relevancia de las respuestas aprovechando una base de conocimientos.",
         "projects.rugby.description": "Análisis profundo de estadísticas de rugby con ML para identificar patrones de rendimiento y predecir resultados de partidos.",
         "projects.cv.description": "Aplicación de deep learning para la detección y clasificación de objetos en tiempo real, con aplicaciones en el ámbito deportivo.",
-        "projects.rag.title": "RAG System",
-        "projects.rag.description": "Sistema de Retrieval-Augmented Generation que utiliza LLMs para mejorar la relevancia de las respuestas aprovechando una base de conocimientos.",
-        "projects.rugby.title": "Rugby Stats Analysis",
-        "projects.rugby.description": "Análisis profundo de estadísticas de rugby con ML para identificar patrones de rendimiento y predecir resultados de partidos.",
-        "projects.cv.title": "Computer Vision",
-        "projects.cv.description": "Aplicación de deep learning para la detección y clasificación de objetos en tiempo real, con aplicaciones en el ámbito deportivo.",
+        "projects.cta.title": "¿Tienes un proyecto en mente?",
+        "projects.cta.description": "Siempre estoy buscando nuevos desafíos emocionantes. ¡No dudes en contactarme para discutir tu proyecto!",
+        "projects.cta.contact": "Contáctame",
         "contact.title": "Contacto",
         "contact.subtitle": "¿Quieres colaborar? ¡Hablemos!",
         "contact.location": "Ubicación",
+        "contact.pageTitle": "Contáctame",
+        "contact.pageSubtitle": "¿Una pregunta, un proyecto, una oportunidad? Estaré encantado de hablar contigo. No dudes en contactarme a través del medio que prefieras.",
+        "contact.infoTitle": "Información",
+        "contact.connect": "Conectar",
+        "contact.viewProfile": "Ver perfil",
+        "contact.emailText": "Envíame un mensaje",
+        "contact.sendEmail": "Enviar email",
+        "contact.available": "Disponible para trabajo remoto",
+        "contact.formTitle": "Enviar un mensaje",
+        "contact.form.name": "Nombre completo",
+        "contact.form.namePlaceholder": "Tu nombre",
+        "contact.form.email": "Email",
+        "contact.form.emailPlaceholder": "tu@email.com",
+        "contact.form.subject": "Asunto",
+        "contact.form.selectSubject": "Selecciona un asunto",
+        "contact.form.subjectProject": "Propuesta de proyecto",
+        "contact.form.subjectJob": "Oportunidad profesional",
+        "contact.form.subjectCollab": "Colaboración",
+        "contact.form.subjectQuestion": "Pregunta",
+        "contact.form.subjectOther": "Otro",
+        "contact.form.message": "Mensaje",
+        "contact.form.messagePlaceholder": "Describe tu proyecto o pregunta...",
+        "contact.form.send": "Enviar mensaje",
+        "contact.form.successTitle": "¡Mensaje enviado!",
+        "contact.form.successMessage": "Gracias por tu mensaje. Te responderé lo antes posible.",
+        "contact.availableStatus": "Disponible para nuevos proyectos",
+        "contact.availableTitle": "Listo para el próximo desafío",
+        "contact.availableDescription": "Actualmente estoy abierto a nuevas oportunidades en ciencia de datos, machine learning e inteligencia artificial, particularmente en el ámbito deportivo.",
         "ai.title": "Asistente IA",
         "ai.subtitle": "Hazme preguntas sobre Mathieu",
         "ai.placeholder": "Escribe tu pregunta...",
@@ -780,12 +1663,62 @@ const translations = {
     },
     "it": {
         "nav.home": "Home",
+        "nav.about": "Chi sono",
         "nav.experience": "Esperienza",
         "nav.skills": "Competenze",
         "nav.projects": "Progetti",
         "nav.contact": "Contatto",
         "hero.description": "Appassionato di IA e della sua applicazione pratica nello sport, nella computer vision e nell'analisi dei dati. Trasformo i dati in insights che fanno la differenza.",
         "hero.contactMe": "Contattami",
+        "about.pageTitle": "Chi sono",
+        "about.pageSubtitle": "Appassionato di data science fin dagli inizi, ho costruito la mia esperienza attraverso esperienze diverse in settori innovativi. Scopri il mio percorso e la mia visione dell'intelligenza artificiale.",
+        "about.story.title": "La mia Storia",
+        "about.story.subtitle": "Come sono arrivato fin qui",
+        "about.story.p1": "La mia passione per la data science è nata da una fascinazione per la matematica e l'informatica. A 23 anni, ho già avuto l'opportunità di lavorare su progetti entusiasmanti in vari settori: salute, servizi pubblici e ora sport.",
+        "about.story.p2": "Ciò che mi guida davvero è vedere l'impatto concreto delle mie analisi. Che si tratti di migliorare le prestazioni di una squadra di rugby, ottimizzare i servizi per i cittadini o aiutare i professionisti della salute nelle loro decisioni, cerco sempre di creare valore misurabile.",
+        "about.story.p3": "Oltre al codice e ai modelli, credo fermamente che la data science sia prima di tutto una disciplina al servizio dell'essere umano. Ecco perché mi sforzo di rendere le mie analisi accessibili e utilizzabili, tenendo sempre a mente l'utente finale.",
+        "about.expertise.title": "Aree di Competenza",
+        "about.expertise.subtitle": "Le mie specialità tecniche",
+        "about.expertise.sports.title": "Sports Analytics",
+        "about.expertise.sports.desc": "Analisi delle prestazioni sportive, tracciamento dei giocatori, previsione dei risultati e ottimizzazione delle strategie di squadra.",
+        "about.expertise.vision.title": "Computer Vision",
+        "about.expertise.vision.desc": "Rilevamento oggetti, riconoscimento immagini, segmentazione semantica ed elaborazione video in tempo reale.",
+        "about.expertise.nlp.title": "NLP & LLM",
+        "about.expertise.nlp.desc": "Elaborazione del linguaggio naturale, chatbot intelligenti, sistemi RAG e fine-tuning di modelli linguistici.",
+        "about.expertise.predictive.title": "Predictive Analytics",
+        "about.expertise.predictive.desc": "Modellazione predittiva, serie temporali, previsioni e ottimizzazione dei processi aziendali.",
+        "about.expertise.dataeng.title": "Data Engineering",
+        "about.expertise.dataeng.desc": "Architettura dei dati, ETL/ELT, pipeline di dati e ottimizzazione di query SQL complesse.",
+        "about.expertise.mlops.title": "MLOps",
+        "about.expertise.mlops.desc": "Distribuzione di modelli, CI/CD per ML, monitoraggio delle prestazioni e gestione del ciclo di vita dei modelli.",
+        "about.values.title": "Valori e Approccio",
+        "about.values.subtitle": "Come lavoro",
+        "about.values.results.title": "Orientato ai Risultati",
+        "about.values.results.desc": "Ogni progetto deve avere un impatto misurabile. Privilegio soluzioni pragmatiche che portano reale valore aziendale.",
+        "about.values.collab.title": "Collaborazione",
+        "about.values.collab.desc": "La data science è un lavoro di squadra. Mi piace scambiare idee con i professionisti per capire le loro esigenze e co-costruire soluzioni.",
+        "about.values.learning.title": "Apprendimento Continuo",
+        "about.values.learning.desc": "L'IA si evolve rapidamente. Dedico tempo alla vigilanza tecnologica e alla sperimentazione di nuovi approcci.",
+        "about.values.quality.title": "Qualità del Codice",
+        "about.values.quality.desc": "Codice pulito, documentato e testato. Credo nelle migliori pratiche e nella manutenibilità del codice a lungo termine.",
+        "about.values.dataviz.title": "Data Viz",
+        "about.values.dataviz.desc": "Gli insight hanno valore solo se vengono compresi. Do grande importanza alla visualizzazione e alla comunicazione dei risultati.",
+        "about.values.agile.title": "Agilità",
+        "about.values.agile.desc": "Iterazione rapida, prototipazione, feedback continuo. Mi adatto ai vincoli e adeguo il mio approccio in base alle esigenze.",
+        "about.interests.title": "Oltre il Codice",
+        "about.interests.subtitle": "Le mie passioni e interessi",
+        "about.interests.rugby.title": "Rugby",
+        "about.interests.rugby.desc": "Grande fan del rugby (specialmente dell'ASM Clermont!). È questa passione che mi ha guidato naturalmente verso la sports analytics.",
+        "about.interests.ai.title": "IA e Tech",
+        "about.interests.ai.desc": "Vigilanza costante sugli ultimi progressi in IA, LLM e tecnologie emergenti. Mi piace sperimentare con nuovi strumenti e framework.",
+        "about.interests.outdoor.title": "Outdoor",
+        "about.interests.outdoor.desc": "Escursionismo, trail running, ciclismo. Mi piace staccare esplorando la natura, specialmente i Pirenei che non sono lontani da Tolosa.",
+        "about.interests.community.title": "Comunità",
+        "about.interests.community.desc": "Partecipare a meetup tecnologici, condividere le mie conoscenze e imparare dagli altri. La comunità di data science è incredibilmente arricchente.",
+        "about.cta.title": "Vuoi parlarne?",
+        "about.cta.desc": "Sono sempre aperto a nuove opportunità e collaborazioni. Non esitare a contattarmi!",
+        "about.cta.btn_contact": "Contattami",
+        "about.cta.btn_projects": "Vedi i miei progetti",
         "experience.title": "Esperienza",
         "experience.subtitle": "Il mio percorso nella Data Science e nell'Intelligenza Artificiale",
         "experience.stats.years": "Anni di esperienza",
@@ -802,23 +1735,75 @@ const translations = {
         "jobs.fdti.description": "Creazione di dashboard KPI e previsioni ML. Automazione dei processi di pulizia dei dati e implementazione di pipeline ETL.",
         "jobs.axione.date": "Giugno 2021 - Agosto 2021",
         "jobs.axione.description": "Supporto ai team IT nell'amministrazione di database. Migrazione dati e ottimizzazione delle query SQL.",
+        "education.title": "Formazione",
+        "education.subtitle": "Il mio percorso accademico",
+        "education.sigma.date": "Sett 2025 - Sett 2026",
+        "education.sigma.title": "Master Specializzato® Esperto Data Science",
+        "education.sigma.description": "Esperto in Data Science. Analisi numerica, Probabilità e statistica, Big Data, Machine Learning.",
+        "education.m2.date": "Sett 2024 - Sett 2025",
+        "education.m2.title": "Master 2 MIAGE",
+        "education.m2.description": "Ingegneria dei Dati e Apprendimento. Ottenuto con Menzione Bene (2° del Corso).",
+        "education.m1.date": "Sett 2023 - Sett 2024",
+        "education.m1.title": "Master 1 MIAGE",
+        "education.m1.description": "Ingegneria dei Dati e Apprendimento. Premio di Eccellenza (Migliore del Corso).",
+        "education.l3.date": "Sett 2022 - Sett 2023",
+        "education.l3.title": "Laurea 3 MIAGE",
+        "education.l3.description": "Matematica e informatica. Ottenuto con Menzione Abbastanza Bene.",
+        "education.dut.date": "2020 - 2022",
+        "education.dut.title": "DUT STID",
+        "education.dut.description": "Statistica e Informatica Decisionale.",
         "skills.title": "Competenze",
         "skills.subtitle": "Tecnologie e strumenti che padroneggio",
         "projects.title": "Progetti",
         "projects.subtitle": "Alcuni risultati che mi stanno a cuore",
         "projects.sourceCode": "Codice sorgente",
+        "projects.pageTitle": "I miei Progetti",
+        "projects.pageSubtitle": "Una selezione di progetti che illustrano la mia passione per la data science, l'intelligenza artificiale e l'innovazione tecnologica.",
+        "projects.filterAll": "Tutti",
+        "projects.filterAI": "IA & ML",
+        "projects.filterSports": "Sport",
+        "projects.filterNLP": "NLP",
+        "projects.filterVision": "Visione",
+        "projects.viewCode": "Vedi codice",
+        "projects.status.completed": "Completato",
+        "projects.status.ongoing": "In corso",
         "projects.rag.description": "Sistema di Retrieval-Augmented Generation che utilizza LLM per migliorare la pertinenza delle risposte basandosi su una base di conoscenze.",
         "projects.rugby.description": "Analisi approfondita delle statistiche del rugby con ML per identificare i pattern di prestazione e prevedere i risultati delle partite.",
         "projects.cv.description": "Applicazione di deep learning per il rilevamento e la classificazione di oggetti in tempo reale, con applicazioni nel campo sportivo.",
-        "projects.rag.title": "RAG System",
-        "projects.rag.description": "Sistema di Retrieval-Augmented Generation che utilizza LLM per migliorare la pertinenza delle risposte basandosi su una base di conoscenze.",
-        "projects.rugby.title": "Rugby Stats Analysis",
-        "projects.rugby.description": "Analisi approfondita delle statistiche del rugby con ML per identificare i pattern di prestazione e prevedere i risultati delle partite.",
-        "projects.cv.title": "Computer Vision",
-        "projects.cv.description": "Applicazione di deep learning per il rilevamento e la classificazione di oggetti in tempo reale, con applicazioni nel campo sportivo.",
+        "projects.cta.title": "Hai un progetto in mente?",
+        "projects.cta.description": "Sono sempre alla ricerca di nuove sfide entusiasmanti. Non esitare a contattarmi per discutere del tuo progetto!",
+        "projects.cta.contact": "Contattami",
         "contact.title": "Contatto",
         "contact.subtitle": "Vuoi collaborare? Parliamone!",
         "contact.location": "Posizione",
+        "contact.pageTitle": "Contattami",
+        "contact.pageSubtitle": "Una domanda, un progetto, un'opportunità? Sarò felice di parlare con te. Non esitare a contattarmi attraverso il canale che preferisci.",
+        "contact.infoTitle": "Informazioni",
+        "contact.connect": "Connetti",
+        "contact.viewProfile": "Vedi profilo",
+        "contact.emailText": "Inviami un messaggio",
+        "contact.sendEmail": "Invia email",
+        "contact.available": "Disponibile per lavoro remoto",
+        "contact.formTitle": "Invia un messaggio",
+        "contact.form.name": "Nome completo",
+        "contact.form.namePlaceholder": "Il tuo nome",
+        "contact.form.email": "Email",
+        "contact.form.emailPlaceholder": "tua@email.com",
+        "contact.form.subject": "Oggetto",
+        "contact.form.selectSubject": "Seleziona un oggetto",
+        "contact.form.subjectProject": "Proposta di progetto",
+        "contact.form.subjectJob": "Opportunità professionale",
+        "contact.form.subjectCollab": "Collaborazione",
+        "contact.form.subjectQuestion": "Domanda",
+        "contact.form.subjectOther": "Altro",
+        "contact.form.message": "Messaggio",
+        "contact.form.messagePlaceholder": "Descrivi il tuo progetto o la tua domanda...",
+        "contact.form.send": "Invia messaggio",
+        "contact.form.successTitle": "Messaggio inviato!",
+        "contact.form.successMessage": "Grazie per il tuo messaggio. Ti risponderò il prima possibile.",
+        "contact.availableStatus": "Disponibile per nuovi progetti",
+        "contact.availableTitle": "Pronto per la prossima sfida",
+        "contact.availableDescription": "Attualmente sono aperto a nuove opportunità in data science, machine learning e intelligenza artificiale, in particolare nel campo sportivo.",
         "ai.title": "Assistente IA",
         "ai.subtitle": "Fammi domande su Mathieu",
         "ai.placeholder": "Scrivi la tua domanda...",
@@ -840,6 +1825,9 @@ if (langSelector) {
         updateLanguage();
     });
 }
+
+// Apply translations on load
+updateLanguage();
 
 function updateLanguage() {
     const t = translations[currentLang];

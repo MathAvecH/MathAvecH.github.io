@@ -25,13 +25,12 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">MV</div>
+        <div class="logo" onclick="window.location.href='index.html'">MV</div>
         <ul class="nav-links">
-            <li><a href="#home" data-i18n="nav.home">Accueil</a></li>
-            <li><a href="#experience" data-i18n="nav.experience">Expérience</a></li>
-            <li><a href="#skills" data-i18n="nav.skills">Compétences</a></li>
-            <li><a href="#projects" data-i18n="nav.projects">Projets</a></li>
-            <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+            <li><a href="index.html" class="active" data-i18n="nav.home">Accueil</a></li>
+            <li><a href="about.html" data-i18n="nav.about">À propos</a></li>
+            <li><a href="projects.html" data-i18n="nav.projects">Projets</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -123,8 +122,11 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-date">Sept 2025 - Aujourd'hui</div>
-                        <h3 class="timeline-title">Data Scientist</h3>
-                        <div class="timeline-company"><i class="fas fa-trophy"></i> ASM Clermont Auvergne</div>
+                        <h3 class="timeline-title">Data Scientist & Engineer</h3>
+                        <div class="timeline-company">
+                            <img src="img/Logo_ASM_Clermont_Auvergne.png" alt="ASM Clermont Auvergne" class="timeline-logo">
+                            <span>ASM Clermont Auvergne</span>
+                        </div>
                         <p class="timeline-description">
                             <span data-i18n="jobs.asm.description">Analyse de la performance sportive avec des techniques avancées de data science et machine learning. Développement d'outils d'aide à la décision pour le staff technique.</span>
                         </p>
@@ -141,7 +143,10 @@
                     <div class="timeline-content">
                         <div class="timeline-date">Sept 2024 - Sept 2025</div>
                         <h3 class="timeline-title">AI Data Scientist</h3>
-                        <div class="timeline-company"><i class="fas fa-city"></i> Toulouse Métropole</div>
+                        <div class="timeline-company">
+                            <img src="img/LOGO-TM.png" alt="Toulouse Métropole" class="timeline-logo">
+                            <span>Toulouse Métropole</span>
+                        </div>
                         <p class="timeline-description">
                             <span data-i18n="jobs.toulouse.description">Développement de solutions d'IA pour optimiser les services publics. Mise en place de chatbots intelligents et systèmes de recommandation pour améliorer l'expérience citoyenne.</span>
                         </p>
@@ -159,7 +164,10 @@
                 <div class="timeline-content">
                     <div class="timeline-date">Sept 2023 - Sept 2024</div>
                     <h3 class="timeline-title">AI Data Scientist</h3>
-                    <div class="timeline-company"><i class="fas fa-hospital"></i> MIPIH</div>
+                    <div class="timeline-company">
+                        <img src="img/logo-Mipih.webp" alt="MIPIH" class="timeline-logo">
+                        <span>MIPIH</span>
+                    </div>
                     <p class="timeline-description">
                         IA appliquée au secteur de la santé. Développement de modèles de traitement du langage naturel 
                         pour l'analyse de documents médicaux et l'aide au diagnostic.
@@ -177,7 +185,10 @@
                     <div class="timeline-content">
                         <div class="timeline-date">Sept 2022 - Sept 2023</div>
                         <h3 class="timeline-title">Data Scientist</h3>
-                        <div class="timeline-company"><i class="fas fa-chart-pie"></i> FDTI Consulting</div>
+                        <div class="timeline-company">
+                            <img src="img/logo-fdti.jpg" alt="FDTI Consulting" class="timeline-logo">
+                            <span>FDTI Consulting</span>
+                        </div>
                         <p class="timeline-description">
                             Création de tableaux de bord KPI, analyses statistiques avancées et modélisation prédictive 
                             pour accompagner les décisions stratégiques des clients.
@@ -194,7 +205,10 @@
                     <div class="timeline-content">
                         <div class="timeline-date">Avril 2022 - Juin 2022</div>
                         <h3 class="timeline-title">Assistant Administrateur de Base de Données</h3>
-                        <div class="timeline-company"><i class="fas fa-database"></i> Axione</div>
+                        <div class="timeline-company">
+                            <img src="img/logo-axione.jpg" alt="Axione" class="timeline-logo">
+                            <span>Axione</span>
+                        </div>
                         <p class="timeline-description">
                             Première expérience professionnelle en gestion de bases de données. Administration, 
                             maintenance et optimisation des systèmes de bases de données. Support technique et documentation.
@@ -211,10 +225,127 @@
         </div>
     </section>
 
+    <!-- Education Section -->
+    <section id="education">
+        <div class="section-header scroll-reveal">
+            <div class="section-number">// 02</div>
+            <h2 data-i18n="education.title">Formation</h2>
+            <p data-i18n="education.subtitle">Mon parcours académique</p>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline">
+                <!-- SIGMA Clermont -->
+                <div class="timeline-item">
+                    <div class="timeline-content" data-id="sigma">
+                        <div class="timeline-date" data-i18n="education.sigma.date">Sept 2025 - Sept 2026</div>
+                        <h3 class="timeline-title" data-i18n="education.sigma.title">Mastère Spécialisé® Expert Data Science</h3>
+                        <div class="timeline-company">
+                            <img src="img/Logo_SIGMA_Clermont.png" alt="SIGMA Clermont" class="timeline-logo">
+                            <span>SIGMA Clermont</span>
+                        </div>
+                        <p class="timeline-description" data-i18n="education.sigma.description">
+                            Expert en Science des Données, Data Science. Analyse numérique, Probabilités et statistique, Big data, Machine Learning.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Data Science</span>
+                            <span class="tag">Big Data</span>
+                            <span class="tag">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Master 2 MIAGE -->
+                <div class="timeline-item">
+                    <div class="timeline-content" data-id="m2-miage">
+                        <div class="timeline-date" data-i18n="education.m2.date">Sept 2024 - Sept 2025</div>
+                        <h3 class="timeline-title" data-i18n="education.m2.title">Master 2 MIAGE</h3>
+                        <div class="timeline-company">
+                            <img src="img/Logo_UTCapitole.png" alt="Université Toulouse Capitole" class="timeline-logo">
+                            <span>Université Toulouse Capitole</span>
+                        </div>
+                        <p class="timeline-description" data-i18n="education.m2.description">
+                            Ingénierie des Données et Apprentissage. Obtenu mention Bien (2ème de Promotion).
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Deep Learning</span>
+                            <span class="tag">Big Data</span>
+                            <span class="tag">Agile</span>
+                            <span class="tag">Scala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Master 1 MIAGE -->
+                <div class="timeline-item">
+                    <div class="timeline-content" data-id="m1-miage">
+                        <div class="timeline-date" data-i18n="education.m1.date">Sept 2023 - Sept 2024</div>
+                        <h3 class="timeline-title" data-i18n="education.m1.title">Master 1 MIAGE</h3>
+                        <div class="timeline-company">
+                            <img src="img/Logo_UTCapitole.png" alt="Université Toulouse Capitole" class="timeline-logo">
+                            <span>Université Toulouse Capitole</span>
+                        </div>
+                        <p class="timeline-description" data-i18n="education.m1.description">
+                            Ingénierie des Données et Apprentissage. Prix de l'Excellence (Major de Promotion).
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Java</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Licence 3 MIAGE -->
+                <div class="timeline-item">
+                    <div class="timeline-content" data-id="l3-miage">
+                        <div class="timeline-date" data-i18n="education.l3.date">Sept 2022 - Sept 2023</div>
+                        <h3 class="timeline-title" data-i18n="education.l3.title">Licence 3 MIAGE</h3>
+                        <div class="timeline-company">
+                            <img src="img/Logo_UTCapitole.png" alt="Université Toulouse Capitole" class="timeline-logo">
+                            <span>Université Toulouse Capitole</span>
+                        </div>
+                        <p class="timeline-description" data-i18n="education.l3.description">
+                            Mathématiques et informatique. Obtenu mention Assez Bien.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">HTML</span>
+                            <span class="tag">NoSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DUT STID -->
+                <div class="timeline-item">
+                    <div class="timeline-content" data-id="dut-stid">
+                        <div class="timeline-date" data-i18n="education.dut.date">2020 - 2022</div>
+                        <h3 class="timeline-title" data-i18n="education.dut.title">DUT STID</h3>
+                        <div class="timeline-company">
+                            <img src="img/Logo_UPPA.png" alt="UPPA" class="timeline-logo">
+                            <span>UPPA</span>
+                        </div>
+                        <p class="timeline-description" data-i18n="education.dut.description">
+                            Statistique et Informatique Décisionnelle.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Statistiques</span>
+                            <span class="tag">API</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Databases</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills">
         <div class="section-header scroll-reveal">
-            <div class="section-number">// 02</div>
+            <div class="section-number">// 03</div>
             <h2 data-i18n="skills.title">Compétences</h2>
             <p data-i18n="skills.subtitle">Technologies et outils que je maîtrise</p>
         </div>
@@ -338,7 +469,7 @@
     <!-- Projects Section -->
     <section id="projects">
         <div class="section-header scroll-reveal">
-            <div class="section-number">// 03</div>
+            <div class="section-number">// 04</div>
             <h2 data-i18n="projects.title">Projets</h2>
             <p data-i18n="projects.subtitle">Quelques réalisations qui me tiennent à cœur</p>
         </div>
@@ -398,16 +529,88 @@
                             <i class="fas fa-eye"></i>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Computer Vision</h3>
+                            <h3 class="project-title">Computer Vision Sports</h3>
                             <p class="project-description" data-i18n="projects.cv.description">
                                 Application de deep learning pour la détection et classification d'objets 
                                 en temps réel, avec applications dans le domaine sportif.
                             </p>
                             <div class="timeline-tags">
                                 <span class="tag">Computer Vision</span>
-                                <span class="tag">CNN</span>
-                                <span class="tag">Real-time</span>
+                                <span class="tag">YOLOv8</span>
                                 <span class="tag">PyTorch</span>
+                                <span class="tag">OpenCV</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MathAvecH" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i> <span data-i18n="projects.sourceCode">Code source</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" data-i18n="projects.nlpHealth.title">NLP Santé</h3>
+                            <p class="project-description" data-i18n="projects.nlpHealth.description">
+                                Système de traitement du langage naturel pour l'analyse de documents médicaux. 
+                                Extraction d'entités nommées et classification de pathologies avec CamemBERT.
+                            </p>
+                            <div class="timeline-tags">
+                                <span class="tag">NLP</span>
+                                <span class="tag">Hugging Face</span>
+                                <span class="tag">CamemBERT</span>
+                                <span class="tag">SpaCy</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MathAvecH" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i> <span data-i18n="projects.sourceCode">Code source</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" data-i18n="projects.chatbot.title">Chatbot Service Public</h3>
+                            <p class="project-description" data-i18n="projects.chatbot.description">
+                                Assistant conversationnel intelligent pour les services publics avec Spring AI 
+                                et Kotlin. Système RAG pour répondre aux questions des citoyens.
+                            </p>
+                            <div class="timeline-tags">
+                                <span class="tag">Chatbot</span>
+                                <span class="tag">Kotlin</span>
+                                <span class="tag">Spring AI</span>
+                                <span class="tag">Vue.js</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MathAvecH" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i> <span data-i18n="projects.sourceCode">Code source</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" data-i18n="projects.pipeline.title">Pipeline de Données</h3>
+                            <p class="project-description" data-i18n="projects.pipeline.description">
+                                Architecture de pipeline ETL/ELT moderne pour le traitement de données massives. 
+                                Orchestration avec Airflow et visualisation avec tableaux de bord.
+                            </p>
+                            <div class="timeline-tags">
+                                <span class="tag">Data Engineering</span>
+                                <span class="tag">Airflow</span>
+                                <span class="tag">SQL</span>
+                                <span class="tag">Dataiku</span>
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/MathAvecH" target="_blank" class="project-link">
@@ -429,7 +632,7 @@
     <!-- Contact Section -->
     <section id="contact">
         <div class="section-header scroll-reveal">
-            <div class="section-number">// 04</div>
+            <div class="section-number">// 05</div>
             <h2 data-i18n="contact.title">Contact</h2>
             <p data-i18n="contact.subtitle">Envie de collaborer ? Discutons !</p>
         </div>
@@ -491,15 +694,32 @@
         </div>
     </div>
 
+    <!-- Education Modal -->
+    <div class="modal" id="educationModal">
+        <div class="modal-content">
+            <span class="modal-close"><i class="fas fa-times"></i></span>
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3 class="modal-title"></h3>
+                <p class="modal-subtitle"></p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-details-grid"></div>
+                <div class="modal-description"></div>
+                <h4 class="modal-section-title">Points Clés</h4>
+                <ul class="modal-points"></ul>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#home" class="footer-link" data-i18n="nav.home">Accueil</a>
-                <a href="#experience" class="footer-link" data-i18n="nav.experience">Expérience</a>
-                <a href="#skills" class="footer-link" data-i18n="nav.skills">Compétences</a>
-                <a href="#projects" class="footer-link" data-i18n="nav.projects">Projets</a>
-                <a href="#contact" class="footer-link" data-i18n="nav.contact">Contact</a>
+                <a href="index.html" class="footer-link" data-i18n="nav.home">Accueil</a>
+                <a href="about.html" class="footer-link" data-i18n="nav.about">À propos</a>
+                <a href="projects.html" class="footer-link" data-i18n="nav.projects">Projets</a>
+                <a href="contact.html" class="footer-link" data-i18n="nav.contact">Contact</a>
             </div>
             <p>&copy; 2025 Mathieu Vassal • Data Scientist & AI Specialist</p>
             <p style="margin-top: 0.5rem; font-size: 0.875rem; opacity: 0.7;">Made with ❤️ and ☕ using HTML, CSS, JS</p>
